@@ -305,7 +305,7 @@
         .wa-float:hover { transform: scale(1.08); }
         .wa-float svg { width: 28px; height: 28px; fill: currentColor; }
 
-        /* Multi-Image Gallery Styling Added */
+        /* Multi-Image Gallery Styling */
         .preview-img-box { width: 100%; height: 260px; background: #181818; position: relative; }
         .preview-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
@@ -316,7 +316,7 @@
         }
         .thumb-img.active { border-color: #fff; opacity: 1; }
 
-        /* Live Recent Order Popup Ticker Added */
+        /* Live Recent Order Popup Ticker */
         .order-ticker {
             position: fixed; bottom: 24px; left: 20px; background: rgba(17, 17, 17, 0.92);
             backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12);
@@ -590,7 +590,7 @@
     <!-- Product Grid -->
     <main class="grid" id="beltContainer"></main>
 
-    <!-- Live Recent Order Popup Notification Ticker Added -->
+    <!-- Live Recent Order Popup Notification Ticker -->
     <div class="order-ticker" id="orderTicker">
         <div class="ticker-icon">✓</div>
         <div class="ticker-text">
@@ -614,7 +614,7 @@
             <div class="preview-img-box">
                 <img id="activePreviewImg" src="" alt="Belt preview">
             </div>
-            <!-- Thumbnail Selector Strip Added -->
+            <!-- Thumbnail Selector Strip -->
             <div class="gallery-thumbs" id="galleryThumbsContainer"></div>
 
             <div class="preview-content">
@@ -693,7 +693,7 @@
             "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Engineered for durability, luxury presence, and daily resilience."
         };
 
-        // Simulated Social Proof Ticker data added
+        // Simulated Social Proof Ticker data
         const recentBuyers = [
             { name: "Kofi", loc: "Osu", belt: "Smooth Black" },
             { name: "Yaw", loc: "East Legon", belt: "Classic White" },
@@ -1013,7 +1013,7 @@
             document.getElementById('custPhone').value = '';
             document.getElementById('custLocation').value = '';
             btn.innerText = "Confirm Pay-on-Delivery Order";
-            btn.disabled = Your cart is empty;
+            btn.disabled = false;
         }
 
         // Initialize Storefront
