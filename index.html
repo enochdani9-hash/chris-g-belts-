@@ -9,19 +9,19 @@
     
     <style>
         :root {
-            --bg: #070707;
-            --surface: #111111;
-            --surface-elevated: #1a1a1a;
-            --glass: rgba(18, 18, 18, 0.85);
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.2);
+            --bg: #050505;
+            --surface: #0e0e0e;
+            --surface-elevated: #161616;
+            --glass: rgba(14, 14, 14, 0.85);
+            --border: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(255, 255, 255, 0.18);
             --primary: #ffffff;
-            --muted: #8e8e93;
+            --muted: #98989f;
             --accent: #E53935;
             --whatsapp: #25D366;
             --gold: #D4AF37;
-            --radius-md: 14px;
-            --radius-lg: 20px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,12 +38,12 @@
         /* Ambient luxury glow */
         .ambient-glow {
             position: fixed;
-            top: -150px;
+            top: -120px;
             left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.09) 0%, rgba(229, 57, 53, 0.05) 45%, rgba(0,0,0,0) 70%);
+            width: 700px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(229, 57, 53, 0.04) 40%, rgba(0,0,0,0) 70%);
             pointer-events: none;
             z-index: 0;
         }
@@ -54,20 +54,20 @@
             top: 0;
             z-index: 90;
             background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--border);
-            padding: 14px 20px;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .brand-name {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            letter-spacing: 1.8px;
-            background: linear-gradient(135deg, #ffffff 40%, #a1a1a6);
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 40%, #888888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -75,20 +75,20 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .badge-delivery {
             display: none;
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.25);
+            background: rgba(37, 211, 102, 0.08);
+            border: 1px solid rgba(37, 211, 102, 0.2);
             color: var(--whatsapp);
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
         }
         @media(min-width: 480px) { .badge-delivery { display: inline-block; } }
 
@@ -98,7 +98,7 @@
             background: var(--surface-elevated);
             border: 1px solid var(--border);
             color: #fff;
-            padding: 8px 14px;
+            padding: 9px 16px;
             border-radius: 12px;
             font-size: 0.85rem;
             font-weight: 700;
@@ -106,9 +106,9 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
-        .cart-trigger:hover { border-color: var(--border-hover); }
+        .cart-trigger:hover { border-color: var(--border-hover); background: #202020; }
         .cart-count {
             background: var(--accent);
             color: white;
@@ -123,31 +123,35 @@
         /* Hero */
         .hero {
             text-align: center;
-            padding: 35px 20px 15px;
+            padding: 45px 20px 20px;
             position: relative;
             z-index: 1;
         }
         .hero h2 {
-            font-size: 1.7rem;
+            font-size: 1.9rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            background: linear-gradient(180deg, #fff 20%, #bbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .hero p {
             color: var(--muted);
-            font-size: 0.88rem;
-            max-width: 450px;
+            font-size: 0.9rem;
+            max-width: 460px;
             margin: 0 auto;
+            line-height: 1.5;
         }
 
         /* Product Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+            gap: 18px;
             padding: 20px;
-            max-width: 720px;
-            margin: 0 auto 80px;
+            max-width: 760px;
+            margin: 0 auto 90px;
             position: relative;
             z-index: 1;
         }
@@ -159,29 +163,29 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             border-color: var(--border-hover);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.6);
         }
 
         .img-wrap {
             position: relative;
             width: 100%;
-            height: 180px;
-            background: #171717;
+            height: 190px;
+            background: #121212;
             overflow: hidden;
         }
         .img-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .card:hover .img-wrap img { transform: scale(1.05); }
+        .card:hover .img-wrap img { transform: scale(1.06); }
 
         .discount-pill {
             position: absolute;
@@ -191,45 +195,49 @@
             color: #fff;
             font-size: 0.65rem;
             font-weight: 800;
-            padding: 3px 6px;
+            padding: 4px 8px;
             border-radius: 6px;
             z-index: 2;
+            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
         }
 
+        /* Updated stock badge: clean "In Stock" pill */
         .stock-pill {
             position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.75);
+            bottom: 10px;
+            right: 10px;
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #d1d1d6;
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e2e2e7;
             font-size: 0.65rem;
-            font-weight: 600;
-            padding: 3px 8px;
+            font-weight: 700;
+            padding: 4px 10px;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
         }
         .stock-pill span.dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: var(--whatsapp);
             border-radius: 50%;
+            box-shadow: 0 0 8px var(--whatsapp);
         }
 
         .card-info {
-            padding: 12px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
             justify-content: space-between;
         }
         .card-title {
-            font-size: 0.86rem;
-            font-weight: 600;
-            color: #efefef;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f2f2f7;
             margin-bottom: 8px;
             line-height: 1.3;
         }
@@ -238,10 +246,10 @@
             display: flex;
             align-items: baseline;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .price-now {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: #fff;
         }
@@ -254,83 +262,95 @@
         .card-actions {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 6px;
+            gap: 8px;
         }
         .btn-view {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
-            color: #ccc;
-            padding: 9px 0;
-            border-radius: 8px;
+            color: #d1d1d6;
+            padding: 10px 0;
+            border-radius: 10px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
             text-align: center;
         }
-        .btn-view:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+        .btn-view:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
 
         .btn-add {
             background: #ffffff;
             border: none;
             color: #000;
-            padding: 9px 0;
-            border-radius: 8px;
+            padding: 10px 0;
+            border-radius: 10px;
             font-size: 0.75rem;
             font-weight: 800;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.1s;
             text-align: center;
         }
-        .btn-add:hover { background: #e5e5e5; }
+        .btn-add:hover { background: #e0e0e0; }
+        .btn-add:active { transform: scale(0.97); }
 
         /* Floating WhatsApp Quick-Chat */
         .wa-float {
             position: fixed;
             bottom: 24px;
-            right: 20px;
+            right: 24px;
             background: var(--whatsapp);
             color: #fff;
-            width: 54px;
-            height: 54px;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
             z-index: 85;
             text-decoration: none;
-            transition: transform 0.2s;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .wa-float:hover { transform: scale(1.08); }
-        .wa-float svg { width: 28px; height: 28px; fill: currentColor; }
+        .wa-float:hover { transform: scale(1.1); }
+        .wa-float svg { width: 30px; height: 30px; fill: currentColor; }
 
-        /* Multi-Image Gallery Styling */
-        .preview-img-box { width: 100%; height: 260px; background: #181818; position: relative; }
-        .preview-img-box img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .gallery-thumbs { display: flex; gap: 8px; padding: 10px 20px 0; overflow-x: auto; }
-        .thumb-img {
-            width: 50px; height: 50px; border-radius: 8px; object-fit: cover; cursor: pointer;
-            border: 2px solid transparent; opacity: 0.6; transition: all 0.2s; flex-shrink: 0;
-        }
-        .thumb-img.active { border-color: #fff; opacity: 1; }
-
-        /* Live Recent Order Popup Ticker */
+        /* Subdued, natural interval order notification ticker */
         .order-ticker {
-            position: fixed; bottom: 24px; left: 20px; background: rgba(17, 17, 17, 0.92);
-            backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 10px 14px; border-radius: 12px; z-index: 80; display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6); max-width: 300px;
-            transform: translateY(120%); opacity: 0; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            position: fixed;
+            bottom: 24px;
+            left: 20px;
+            background: rgba(14, 14, 14, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 16px;
+            border-radius: 14px;
+            z-index: 80;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+            max-width: 320px;
+            transform: translateY(140%);
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
         .order-ticker.show { transform: translateY(0); opacity: 1; }
         .ticker-icon {
-            width: 32px; height: 32px; background: rgba(37, 211, 102, 0.15); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; color: var(--whatsapp); font-size: 0.9rem; flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            background: rgba(37, 211, 102, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--whatsapp);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(37, 211, 102, 0.25);
         }
-        .ticker-text { font-size: 0.75rem; color: #ccc; line-height: 1.3; }
-        .ticker-text strong { color: #fff; display: block; font-size: 0.8rem; }
+        .ticker-text { font-size: 0.78rem; color: #a1a1a6; line-height: 1.35; }
+        .ticker-text strong { color: #fff; display: block; font-size: 0.82rem; margin-bottom: 1px; }
 
         /* General Modal Backdrop */
         .modal-overlay {
@@ -339,7 +359,8 @@
             inset: 0;
             z-index: 200;
             background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             align-items: center;
             justify-content: center;
             padding: 16px;
@@ -352,10 +373,11 @@
             max-width: 440px;
             overflow: hidden;
             position: relative;
-            animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
         }
         @keyframes modalPop {
-            0% { transform: scale(0.95); opacity: 0; }
+            0% { transform: scale(0.94); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
 
@@ -366,8 +388,8 @@
             background: rgba(0,0,0,0.6);
             border: 1px solid rgba(255,255,255,0.1);
             color: #fff;
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 10;
@@ -375,36 +397,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.2s;
         }
+        .btn-close:hover { background: rgba(255,255,255,0.2); }
+
+        /* Multi-Image Gallery Styling */
+        .preview-img-box { width: 100%; height: 280px; background: #121212; position: relative; }
+        .preview-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .gallery-thumbs { display: flex; gap: 8px; padding: 12px 20px 0; overflow-x: auto; }
+        .thumb-img {
+            width: 52px; height: 52px; border-radius: 10px; object-fit: cover; cursor: pointer;
+            border: 2px solid transparent; opacity: 0.5; transition: all 0.2s; flex-shrink: 0; background: #181818;
+        }
+        .thumb-img.active { border-color: #fff; opacity: 1; transform: scale(1.05); }
 
         /* Product Preview Elements */
-        .preview-content { padding: 22px; }
-        .preview-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-        .preview-title { font-size: 1.25rem; font-weight: 700; }
+        .preview-content { padding: 22px 24px 26px; }
+        .preview-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .preview-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; }
         .preview-stock {
             color: var(--whatsapp);
             font-size: 0.75rem;
             font-weight: 700;
             background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.2);
-            padding: 3px 8px;
-            border-radius: 12px;
+            border: 1px solid rgba(37, 211, 102, 0.25);
+            padding: 4px 10px;
+            border-radius: 20px;
             margin-top: 4px;
         }
-        .preview-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+        .preview-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
 
         /* Quantity Controller */
         .qty-picker {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            background: var(--surface-elevated);
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
-        .qty-picker label { font-size: 0.8rem; font-weight: 600; color: #888; text-transform: uppercase; }
+        .qty-picker label { font-size: 0.75rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.8px; }
         .qty-controls {
             display: inline-flex;
             align-items: center;
-            background: var(--surface-elevated);
+            background: #0a0a0a;
             border: 1px solid var(--border);
             border-radius: 10px;
             overflow: hidden;
@@ -413,15 +452,16 @@
             background: transparent;
             border: none;
             color: #fff;
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             font-size: 1.1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.2s;
         }
-        .qty-btn:active { background: rgba(255,255,255,0.1); }
+        .qty-btn:hover { background: rgba(255,255,255,0.08); }
         .qty-num { width: 34px; text-align: center; font-weight: 700; font-size: 0.95rem; }
 
         /* Cart Drawer System */
@@ -430,8 +470,9 @@
             position: fixed;
             inset: 0;
             z-index: 250;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         .cart-drawer {
             position: fixed;
@@ -440,29 +481,30 @@
             bottom: 0;
             width: 100%;
             max-width: 420px;
-            background: #111111;
+            background: #0d0d0d;
             border-left: 1px solid var(--border);
             z-index: 260;
             display: flex;
             flex-direction: column;
             transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -20px 0 50px rgba(0,0,0,0.8);
         }
         .cart-drawer.open { transform: translateX(0); }
 
         .cart-top {
-            padding: 18px 20px;
+            padding: 20px 24px;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .cart-top h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; }
+        .cart-top h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.5px; }
 
         .cart-items-scroll {
             flex-grow: 1;
             overflow-y: auto;
-            padding: 16px 20px;
+            padding: 18px 24px;
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -470,99 +512,103 @@
 
         .cart-empty-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 70px 20px;
             color: var(--muted);
         }
-        .cart-empty-state svg { width: 44px; height: 44px; stroke: #444; margin-bottom: 12px; }
+        .cart-empty-state svg { width: 48px; height: 48px; stroke: #444; margin-bottom: 14px; }
 
         .cart-item {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             background: var(--surface-elevated);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 10px;
+            border-radius: 14px;
+            padding: 12px;
             align-items: center;
         }
         .cart-item img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
             object-fit: cover;
             background: #000;
         }
         .cart-item-details { flex-grow: 1; }
-        .cart-item-name { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        .cart-item-price { font-size: 0.8rem; color: var(--gold); font-weight: 700; }
+        .cart-item-name { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .cart-item-price { font-size: 0.82rem; color: var(--gold); font-weight: 700; }
         
         .cart-item-controls {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 6px;
+            gap: 8px;
+            margin-top: 8px;
         }
         .mini-btn {
             background: rgba(255,255,255,0.08);
             border: none;
             color: #fff;
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            width: 26px;
+            height: 26px;
+            border-radius: 7px;
+            font-size: 0.85rem;
             cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
         }
+        .mini-btn:hover { background: rgba(255,255,255,0.18); }
 
         .cart-footer {
             border-top: 1px solid var(--border);
-            padding: 18px 20px;
-            background: #0e0e0e;
+            padding: 20px 24px;
+            background: #080808;
         }
 
         .subtotal-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
         .subtotal-row span { font-size: 0.9rem; color: var(--muted); }
-        .subtotal-row strong { font-size: 1.25rem; font-weight: 800; color: #fff; }
+        .subtotal-row strong { font-size: 1.3rem; font-weight: 800; color: #fff; }
 
         /* Checkout Inputs Inside Drawer */
         .checkout-fields {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin-bottom: 18px;
         }
         .checkout-fields input {
-            background: #181818;
+            background: #141414;
             border: 1px solid var(--border);
             color: #fff;
-            padding: 11px 14px;
-            border-radius: 10px;
-            font-size: 0.85rem;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-size: 0.88rem;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, background 0.2s;
         }
-        .checkout-fields input:focus { border-color: #ffffff; }
+        .checkout-fields input:focus { border-color: rgba(255,255,255,0.4); background: #1a1a1a; }
 
         .btn-checkout {
             background: var(--whatsapp);
             border: none;
             color: #fff;
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border-radius: 12px;
             font-size: 0.95rem;
             font-weight: 800;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-            transition: opacity 0.2s;
+            letter-spacing: 0.8px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+            transition: opacity 0.2s, transform 0.1s;
         }
-        .btn-checkout:hover { opacity: 0.95; }
+        .btn-checkout:hover { opacity: 0.93; }
+        .btn-checkout:active { transform: scale(0.98); }
         .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
     </style>
 </head>
@@ -590,7 +636,7 @@
     <!-- Product Grid -->
     <main class="grid" id="beltContainer"></main>
 
-    <!-- Live Recent Order Popup Notification Ticker -->
+    <!-- Natural Social Proof Ticker (Fires infrequently: every 45-60 seconds to look authentic) -->
     <div class="order-ticker" id="orderTicker">
         <div class="ticker-icon">✓</div>
         <div class="ticker-text">
@@ -621,7 +667,7 @@
                 <div class="preview-header">
                     <div>
                         <div class="preview-title" id="previewTitle"></div>
-                        <div class="price-line" style="margin-top: 4px;">
+                        <div class="price-line" style="margin-top: 6px;">
                             <span class="price-now" id="previewPrice"></span>
                             <span class="price-was" id="previewOrigPrice"></span>
                         </div>
@@ -693,7 +739,7 @@
             "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Engineered for durability, luxury presence, and daily resilience."
         };
 
-        // Simulated Social Proof Ticker data
+        // Natural Social Proof Ticker data (fires every 55 seconds so it never feels spammy)
         const recentBuyers = [
             { name: "Kofi", loc: "Osu", belt: "Smooth Black" },
             { name: "Yaw", loc: "East Legon", belt: "Classic White" },
@@ -702,18 +748,24 @@
         ];
 
         function startOrderTicker() {
-            setInterval(() => {
-                const randomBuyer = recentBuyers[Math.floor(Math.random() * recentBuyers.length)];
-                document.getElementById('tickerHeader').innerText = `New order in ${randomBuyer.loc}`;
-                document.getElementById('tickerBody').innerText = `${randomBuyer.name} just ordered a Chris-G ${randomBuyer.belt}`;
-                
-                const ticker = document.getElementById('orderTicker');
-                ticker.classList.add('show');
+            // First subtle popup after 12 seconds, then repeats naturally every 55 seconds
+            setTimeout(() => {
+                triggerTickerPopup();
+                setInterval(triggerTickerPopup, 55000);
+            }, 12000);
+        }
 
-                setTimeout(() => {
-                    ticker.classList.remove('show');
-                }, 5000);
-            }, 14000);
+        function triggerTickerPopup() {
+            const randomBuyer = recentBuyers[Math.floor(Math.random() * recentBuyers.length)];
+            document.getElementById('tickerHeader').innerText = `New order in ${randomBuyer.loc}`;
+            document.getElementById('tickerBody').innerText = `${randomBuyer.name} just ordered a Chris-G ${randomBuyer.belt}`;
+            
+            const ticker = document.getElementById('orderTicker');
+            ticker.classList.add('show');
+
+            setTimeout(() => {
+                ticker.classList.remove('show');
+            }, 5000);
         }
 
         // Load Products from Supabase
@@ -735,8 +787,8 @@
             beltCatalog.forEach(belt => {
                 const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
                 const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}%</div>` : '';
-                const stockCount = belt.stock_count || 100;
                 
+                // Replaced numeric piece counts with a clean "In Stock" indicator badge
                 let mainImg = belt.image_url;
                 if (belt.images) {
                     try {
@@ -752,7 +804,7 @@
                     ${discountBadge}
                     <div class="img-wrap">
                         <img src="${mainImg}" alt="${belt.name}">
-                        <div class="stock-pill"><span class="dot"></span> ${stockCount} left</div>
+                        <div class="stock-pill"><span class="dot"></span> In Stock</div>
                     </div>
                     <div class="card-info">
                         <div>
@@ -782,7 +834,7 @@
             document.getElementById('previewTitle').innerText = previewBelt.name;
             document.getElementById('previewPrice').innerText = `GH₵${previewBelt.sale_price}`;
             document.getElementById('previewOrigPrice').innerText = `GH₵${previewBelt.original_price}`;
-            document.getElementById('previewStock').innerText = `In Stock: ${previewBelt.stock_count || 100}`;
+            document.getElementById('previewStock').innerText = "In Stock";
             document.getElementById('previewDesc').innerText = beltDescriptions[previewBelt.name] || 
                 "High-performance Swiss automatic belt crafted with genuine leather and micro-adjustable ratchet convenience.";
 
@@ -830,8 +882,7 @@
         }
 
         function adjustPreviewQty(delta) {
-            const maxStock = previewBelt ? (previewBelt.stock_count || 100) : 100;
-            previewQuantity = Math.max(1, Math.min(maxStock, previewQuantity + delta));
+            previewQuantity = Math.max(1, Math.min(20, previewQuantity + delta));
             document.getElementById('previewQtyNum').innerText = previewQuantity;
         }
 
@@ -861,18 +912,16 @@
             }
 
             const existingIndex = cart.findIndex(item => item.id === beltId);
-            const stockLimit = belt.stock_count || 100;
 
             if (existingIndex > -1) {
-                cart[existingIndex].quantity = Math.min(stockLimit, cart[existingIndex].quantity + qty);
+                cart[existingIndex].quantity += qty;
             } else {
                 cart.push({
                     id: belt.id,
                     name: belt.name,
                     sale_price: belt.sale_price,
                     image_url: mainImg,
-                    stock_count: stockLimit,
-                    quantity: Math.min(stockLimit, qty)
+                    quantity: qty
                 });
             }
             updateCartDisplay();
@@ -885,8 +934,6 @@
             item.quantity += delta;
             if (item.quantity <= 0) {
                 cart = cart.filter(i => i.id !== beltId);
-            } else if (item.quantity > item.stock_count) {
-                item.quantity = item.stock_count;
             }
             updateCartDisplay();
         }
@@ -966,7 +1013,6 @@
             btn.innerText = "Confirming Order...";
             btn.disabled = true;
 
-            // 1. Build an order record for every unique item in cart for Supabase
             const orderRows = cart.map(item => ({
                 belt_id: item.id,
                 customer_name: cart.length > 1 ? `${name} (${item.quantity}x)` : name,
@@ -983,7 +1029,6 @@
                 return;
             }
 
-            // 2. Format a detailed summary for Make.com & your email alerts
             const totalGhc = cart.reduce((sum, i) => sum + (i.sale_price * i.quantity), 0);
             const itemsSummary = cart.map(i => `${i.name} (Qty: ${i.quantity})`).join(', ');
             const formattedBeltPayload = `${itemsSummary} | Total: GH₵${totalGhc}`;
@@ -1003,7 +1048,6 @@
                 console.log("Webhook alert sent with status:", err);
             }
 
-            // Success feedback
             alert(`🎉 Order Confirmed!\n\nThank you, ${name}. We have received your order for:\n${itemsSummary}\n\nWe will call ${phone} shortly to coordinate your delivery in Accra!`);
             
             cart = [];
