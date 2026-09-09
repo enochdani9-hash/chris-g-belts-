@@ -3,118 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHRIS-G SWISS BELTS | Pay on Delivery</title>
+    <title>CHRIS-G SWISS BELTS | Premium Pay on Delivery</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #111111;
-            --accent: #E53935; 
-            --bg: #F8F9FA;
+            --bg-deep: #0a0a0a;
+            --surface: #141414;
+            --surface-glass: rgba(20, 20, 20, 0.75);
+            --border: rgba(255, 255, 255, 0.08);
+            --primary: #ffffff;
+            --muted: #888888;
+            --accent: #E53935;
             --whatsapp: #25D366;
+            --gold: #D4AF37;
         }
-        body {
-            font-family: 'Poppins', sans-serif; margin: 0; padding: 0;
-            background-color: var(--bg); color: var(--primary);
-        }
-        .header {
-            background-color: #ffffff; text-align: center; padding: 20px 15px;
-            position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-        .header h2 { margin: 0; font-size: 1.5em; font-weight: 700; letter-spacing: 1px; }
-        .header p { font-size: 0.85em; color: #666; margin: 5px 0 0 0; font-weight: 600; }
-        .header span.highlight { color: var(--whatsapp); }
         
-        .product-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-            padding: 15px; max-width: 600px; margin: 0 auto;
-        }
-        .belt-card {
-            background: #ffffff; border-radius: 12px; overflow: hidden; position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04); display: flex; flex-direction: column;
-        }
-        .discount-badge {
-            position: absolute; top: 10px; left: 10px; background-color: var(--accent);
-            color: white; font-size: 0.75em; font-weight: 700; padding: 4px 8px;
-            border-radius: 4px; z-index: 2;
-        }
-        .belt-image { width: 100%; height: 160px; background-color: #eee; object-fit: cover; }
-        .card-content { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
-        .belt-title { font-size: 0.9em; font-weight: 600; margin: 0 0 8px 0; line-height: 1.2; color: #333; }
-        .price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-        .sale-price { font-weight: 700; color: var(--primary); font-size: 1.1em; }
-        .original-price { text-decoration: line-through; color: #999; font-size: 0.8em; }
-        .buy-btn {
-            background-color: var(--primary); color: white; border: none; padding: 10px;
-            width: 100%; border-radius: 8px; font-family: inherit; font-weight: 600;
-            font-size: 0.9em; cursor: pointer; text-transform: uppercase;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--primary);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* The Checkout Modal */
+        /* Ambient background glow */
+        .bg-glow {
+            position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
+            width: 80vw; height: 50vh; background: radial-gradient(circle, rgba(229, 57, 53, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0; pointer-events: none;
+        }
+
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--surface-glass);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-area h1 {
+            font-size: 1.15rem; font-weight: 800; letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #fff 30%, #888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .badge-pod {
+            background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3);
+            color: var(--whatsapp); font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .hero-banner {
+            text-align: center; padding: 30px 20px 10px; position: relative; z-index: 1;
+        }
+        .hero-banner h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 6px; }
+        .hero-banner p { color: var(--muted); font-size: 0.85rem; }
+
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 16px; padding: 20px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1;
+        }
+
+        .belt-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            cursor: pointer; position: relative;
+        }
+        .belt-card:hover {
+            transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .img-container { position: relative; width: 100%; height: 180px; background: #1a1a1a; }
+        .belt-image { width: 100%; height: 100%; object-fit: cover; }
+        
+        .discount-tag {
+            position: absolute; top: 10px; left: 10px; background: var(--accent);
+            color: #fff; font-size: 0.65rem; font-weight: 800; padding: 3px 6px;
+            border-radius: 6px; z-index: 2;
+        }
+
+        .card-body { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .belt-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: #eee; }
+        
+        .price-box { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+        .sale-price { font-size: 1rem; font-weight: 700; color: #fff; }
+        .orig-price { font-size: 0.75rem; color: var(--muted); text-decoration: line-through; }
+
+        .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        
+        .btn-preview {
+            background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--border);
+            padding: 8px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: background 0.2s; text-align: center;
+        }
+        .btn-preview:hover { background: rgba(255, 255, 255, 0.15); }
+
+        .btn-buy {
+            background: #fff; color: #000; border: none; padding: 8px;
+            border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
+            transition: background 0.2s; text-align: center;
+        }
+        .btn-buy:hover { background: #e0e0e0; }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp);
+            color: #fff; width: 55px; height: 55px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); z-index: 150;
+            text-decoration: none; transition: transform 0.2s;
+        }
+        .whatsapp-float:hover { transform: scale(1.08); }
+        .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
+
+        /* Modals Overlay */
         .modal {
-            display: none; position: fixed; z-index: 200; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
-            align-items: center; justify-content: center;
+            display: none; position: fixed; inset: 0; z-index: 300;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            align-items: center; justify-content: center; padding: 15px;
         }
-        .modal-content {
-            background-color: #fff; padding: 25px; border-radius: 12px;
-            width: 90%; max-width: 400px; position: relative; box-sizing: border-box;
+        .modal-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; width: 100%; max-width: 420px; overflow: hidden;
+            position: relative; animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .close-modal {
-            position: absolute; top: 10px; right: 15px; font-size: 1.8em; 
-            cursor: pointer; color: #333; line-height: 1;
+        @keyframes modalPop {
+            0% { transform: scale(0.92); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
-        .modal h3 { margin-top: 0; margin-bottom: 5px; }
-        .selected-belt { color: var(--accent); font-weight: 600; font-size: 0.9em; margin-bottom: 20px; display: block; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.85em; margin-bottom: 5px; font-weight: 600; }
-        .form-group input { 
-            width: 100%; padding: 12px; border: 1px solid #ddd; 
-            border-radius: 6px; font-family: inherit; box-sizing: border-box; 
+
+        .modal-close {
+            position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6);
+            color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%;
+            font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
         }
-        .submit-btn {
-            background-color: var(--whatsapp); color: white; border: none; 
-            padding: 12px; width: 100%; border-radius: 8px; font-family: inherit; 
-            font-weight: 600; font-size: 1em; cursor: pointer; text-transform: uppercase;
-            margin-top: 10px;
+
+        /* Preview Modal Specifics */
+        .preview-img { width: 100%; height: 260px; object-fit: cover; background: #1a1a1a; }
+        .preview-body { padding: 20px; }
+        .preview-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+        .preview-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px; }
+
+        /* Checkout Form Modal Specifics */
+        .checkout-body { padding: 25px; }
+        .checkout-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+        .checkout-subtitle { color: var(--accent); font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; display: block; }
+        
+        .field-group { margin-bottom: 14px; }
+        .field-group label { display: block; font-size: 0.75rem; font-weight: 600; color: #aaa; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .field-group input {
+            width: 100%; background: #0a0a0a; border: 1px solid var(--border);
+            padding: 12px; border-radius: 10px; color: #fff; font-family: inherit; font-size: 0.9rem;
+            outline: none; transition: border-color 0.2s;
         }
+        .field-group input:focus { border-color: #fff; }
+
+        .btn-submit {
+            background: var(--whatsapp); color: #fff; border: none; width: 100%;
+            padding: 14px; border-radius: 10px; font-family: inherit; font-weight: 700;
+            font-size: 0.95rem; cursor: pointer; margin-top: 10px; text-transform: uppercase;
+            letter-spacing: 0.5px; transition: opacity 0.2s;
+        }
+        .btn-submit:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h2>CHRIS-G SWISS BELTS</h2>
-        <p>Order Now, <span class="highlight">Pay on Delivery</span> in Accra</p>
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="logo-area">
+            <h1>CHRIS-G SWISS</h1>
+        </div>
+        <div class="badge-pod">Pay on Delivery</div>
+    </header>
+
+    <div class="hero-banner">
+        <h2>Executive Collection</h2>
+        <p>Handcrafted Swiss durability delivered right to your doorstep in Accra.</p>
     </div>
 
-    <div class="product-grid" id="belt-container">
-        <!-- Belts will load here -->
+    <!-- Product Grid -->
+    <div class="product-grid" id="belt-container"></div>
+
+    <!-- Floating WhatsApp Direct Contact -->
+    <a href="https://wa.me/233551234987?text=Hello%20Chris-G%20Swiss%20Belts,%20I%20want%20to%20make%20an%20inquiry." class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closePreview()">&times;</button>
+            <img id="previewImg" class="preview-img" src="" alt="">
+            <div class="preview-body">
+                <h3 id="previewTitle" class="preview-title"></h3>
+                <p id="previewDesc" class="preview-desc"></p>
+                <button class="btn-submit" onclick="proceedToCheckout()">Order This Belt (Pay on Delivery)</button>
+            </div>
+        </div>
     </div>
 
-    <!-- The Checkout Form -->
+    <!-- Checkout Modal -->
     <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3>Complete Your Order</h3>
-            <span class="selected-belt" id="modalBeltName"></span>
-            
-            <input type="hidden" id="beltId">
-            
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="customerName" placeholder="e.g. Kwame Mensah">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeCheckout()">&times;</button>
+            <div class="checkout-body">
+                <div class="checkout-title">Complete Order</div>
+                <span class="checkout-subtitle" id="modalBeltName"></span>
+                
+                <input type="hidden" id="beltId">
+                
+                <div class="field-group">
+                    <label>Full Name</label>
+                    <input type="text" id="customerName" placeholder="e.g. Kofi Mensah">
+                </div>
+                <div class="field-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phoneNumber" placeholder="e.g. 054 123 4567">
+                </div>
+                <div class="field-group">
+                    <label>Delivery Location (Accra)</label>
+                    <input type="text" id="deliveryLocation" placeholder="e.g. Osu, near Danquah Circle">
+                </div>
+                <button class="btn-submit" onclick="submitOrder()">Confirm Pay-on-Delivery</button>
             </div>
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" id="phoneNumber" placeholder="e.g. 054 123 4567">
-            </div>
-            <div class="form-group">
-                <label>Delivery Location in Accra</label>
-                <input type="text" id="deliveryLocation" placeholder="e.g. East Legon, near the mall">
-            </div>
-            <button class="submit-btn" onclick="submitOrder()">Confirm Order</button>
         </div>
     </div>
 
@@ -123,7 +242,18 @@
         const supabaseKey = 'sb_publishable_6XKVRJnKzAa-DSpeuiqsHg_M8-OdEAT';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        let selectedBeltName = "";
+        let activeBeltId = "";
+        let activeBeltName = "";
+        let activeBeltPrice = "";
+        let activeBeltImg = "";
+
+        // Fallback curated descriptions for peak UX matching your items
+        const beltDescriptions = {
+            "Chris-G Classic White": "Crafted from genuine top-grain Swiss leather featuring a mirror-finish silver automatic buckle. Designed for formal wear, corporate boardrooms, and high-end executive look.",
+            "Chris-G Smooth Brown": "Rich chestnut brown genuine leather matched with an ultra-smooth ratchet buckle layout. The ultimate companion for tailored trousers and smart-casual styling in Accra.",
+            "Chris-G Smooth Black": "The gold standard of minimalist luxury. Features scratch-resistant deep black leather and a precision micro-adjustable buckle system built to last for years.",
+            "Chris-G Textured Brown": "Textured crocodile-embossed finish combined with heavy-duty reinforced stitching. Built for statement style, supreme comfort, and all-day confidence."
+        };
 
         async function loadBelts() {
             const { data: belts, error } = await supabaseClient.from('belts').select('*');
@@ -138,61 +268,83 @@
             
             belts.forEach(belt => {
                 const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
-                const badgeHTML = discount > 0 ? `<div class="discount-badge">-${discount}%</div>` : '';
-                const imageUrl = belt.image_url ? belt.image_url : 'https://placehold.co/400x400/eeeeee/999999?text=No+Image';
+                const badgeHTML = discount > 0 ? `<div class="discount-tag">-${discount}%</div>` : '';
+                const imageUrl = belt.image_url ? belt.image_url : 'https://placehold.co/400x400/1a1a1a/666?text=Chris-G';
+                const description = beltDescriptions[belt.name] || "Premium genuine Swiss leather belt featuring high-durability automatic buckle tech and scratch-resistant finish.";
 
                 const card = document.createElement('div');
                 card.className = 'belt-card';
                 card.innerHTML = `
                     ${badgeHTML}
-                    <img src="${imageUrl}" class="belt-image" alt="${belt.name}">
-                    <div class="card-content">
+                    <div class="img-container">
+                        <img src="${imageUrl}" class="belt-image" alt="${belt.name}">
+                    </div>
+                    <div class="card-body">
                         <div>
-                            <h4 class="belt-title">${belt.name}</h4>
-                            <div class="price-row">
+                            <div class="belt-title">${belt.name}</div>
+                            <div class="price-box">
                                 <span class="sale-price">GH₵${belt.sale_price}</span>
-                                <span class="original-price">GH₵${belt.original_price}</span>
+                                <span class="orig-price">GH₵${belt.original_price}</span>
                             </div>
                         </div>
-                        <button class="buy-btn" onclick="openModal('${belt.id}', '${belt.name.replace(/'/g, "\\'")}')">Order Now</button>
+                        <div class="action-btns">
+                            <button class="btn-preview" onclick="openPreview('${belt.id}', '${belt.name.replace(/'/g, "\\'")}', '${belt.sale_price}', '${imageUrl}', '${description.replace(/'/g, "\\'")}')">Details</button>
+                            <button class="btn-buy" onclick="openCheckoutDirect('${belt.id}', '${belt.name.replace(/'/g, "\\'")}')">Order</button>
+                        </div>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        // Modal Functions
-        function openModal(id, name) {
+        function openPreview(id, name, price, img, desc) {
+            activeBeltId = id;
+            activeBeltName = name;
+            activeBeltPrice = price;
+            activeBeltImg = img;
+            
+            document.getElementById('previewTitle').innerText = name;
+            document.getElementById('previewDesc').innerText = desc;
+            document.getElementById('previewImg').src = img;
+            document.getElementById('previewModal').style.display = 'flex';
+        }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        function proceedToCheckout() {
+            closePreview();
+            openCheckoutDirect(activeBeltId, activeBeltName);
+        }
+
+        function openCheckoutDirect(id, name) {
             document.getElementById('beltId').value = id;
-            selectedBeltName = name;
-            document.getElementById('modalBeltName').innerText = "Ordering: " + name;
+            activeBeltName = name;
+            document.getElementById('modalBeltName').innerText = "Selected: " + name;
             document.getElementById('orderModal').style.display = 'flex';
         }
 
-        function closeModal() {
+        function closeCheckout() {
             document.getElementById('orderModal').style.display = 'none';
         }
 
-        // Submit Order to Database AND Make.com with name override
         async function submitOrder() {
             const beltId = document.getElementById('beltId').value;
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('phoneNumber').value;
             const location = document.getElementById('deliveryLocation').value;
-            
-            const modalText = document.getElementById('modalBeltName').innerText;
-            const beltNameToSend = selectedBeltName || modalText.replace("Ordering: ", "") || "Swiss Belt";
 
             if (!name || !phone || !location) {
-                alert("Please fill in all details so we can deliver your belt!");
+                alert("Please fill in all delivery details.");
                 return;
             }
 
-            const btn = document.querySelector('.submit-btn');
-            btn.innerText = "Processing...";
+            const btn = document.querySelector('.checkout-body .btn-submit');
+            btn.innerText = "Processing Order...";
             btn.disabled = true;
 
-            // 1. Save to Supabase (Database still receives the real UUID belt_id correctly)
+            // 1. Save to Supabase orders table
             const { error } = await supabaseClient
                 .from('orders')
                 .insert([{ 
@@ -204,12 +356,12 @@
 
             if (error) {
                 alert("Something went wrong. Please try again.");
-                btn.innerText = "Confirm Order";
+                btn.innerText = "Confirm Pay-on-Delivery";
                 btn.disabled = false;
                 return;
             } 
             
-            // 2. Send instant alert to Make.com sending the name inside the belt_id slot
+            // 2. Fire webhook to Make.com using name override
             try {
                 await fetch('https://hook.eu1.make.com/uehjef8tcnwlvg3957zbe6yg4y7qk9gk', {
                     method: 'POST',
@@ -218,20 +370,19 @@
                         customer_name: name,
                         phone_number: phone,
                         delivery_location: location,
-                        belt_id: beltNameToSend // Forces the name into your existing Make.com tag!
+                        belt_id: activeBeltName
                     })
                 });
             } catch (err) {
-                console.log("Webhook alert issue, but order saved:", err);
+                console.log("Webhook notice:", err);
             }
 
-            // 3. Success!
-            alert("Order Received! We will call you shortly to arrange delivery.");
-            closeModal();
+            alert("Order Placed Successfully! We will call you right away to arrange your delivery in Accra.");
+            closeCheckout();
             document.getElementById('customerName').value = '';
             document.getElementById('phoneNumber').value = '';
             document.getElementById('deliveryLocation').value = '';
-            btn.innerText = "Confirm Order";
+            btn.innerText = "Confirm Pay-on-Delivery";
             btn.disabled = false;
         }
 
