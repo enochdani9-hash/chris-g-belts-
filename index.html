@@ -201,7 +201,6 @@
             box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
         }
 
-        /* Updated stock badge: clean "In Stock" pill */
         .stock-pill {
             position: absolute;
             bottom: 10px;
@@ -314,7 +313,7 @@
         .wa-float:hover { transform: scale(1.1); }
         .wa-float svg { width: 30px; height: 30px; fill: currentColor; }
 
-        /* Subdued, natural interval order notification ticker */
+        /* Subdued order notification ticker (fires every 3 minutes) */
         .order-ticker {
             position: fixed;
             bottom: 24px;
@@ -636,7 +635,7 @@
     <!-- Product Grid -->
     <main class="grid" id="beltContainer"></main>
 
-    <!-- Natural Social Proof Ticker (Fires infrequently: every 45-60 seconds to look authentic) -->
+    <!-- Social Proof Ticker (Fires precisely every 3 minutes) -->
     <div class="order-ticker" id="orderTicker">
         <div class="ticker-icon">✓</div>
         <div class="ticker-text">
@@ -672,7 +671,7 @@
                             <span class="price-was" id="previewOrigPrice"></span>
                         </div>
                     </div>
-                    <div class="preview-stock" id="previewStock"></div>
+                    <div class="preview-stock" id="previewStock">In Stock</div>
                 </div>
 
                 <p class="preview-desc" id="previewDesc"></p>
@@ -739,7 +738,7 @@
             "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Engineered for durability, luxury presence, and daily resilience."
         };
 
-        // Natural Social Proof Ticker data (fires every 55 seconds so it never feels spammy)
+        // Natural Social Proof Ticker data (set to trigger exactly every 3 minutes: 180,000ms)
         const recentBuyers = [
             { name: "Kofi", loc: "Osu", belt: "Smooth Black" },
             { name: "Yaw", loc: "East Legon", belt: "Classic White" },
@@ -748,11 +747,11 @@
         ];
 
         function startOrderTicker() {
-            // First subtle popup after 12 seconds, then repeats naturally every 55 seconds
+            // First popup after 15 seconds, then repeats cleanly every 3 minutes (180000 ms)
             setTimeout(() => {
                 triggerTickerPopup();
-                setInterval(triggerTickerPopup, 55000);
-            }, 12000);
+                setInterval(triggerTickerPopup, 180000);
+            }, 15000);
         }
 
         function triggerTickerPopup() {
@@ -788,7 +787,6 @@
                 const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
                 const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}%</div>` : '';
                 
-                // Replaced numeric piece counts with a clean "In Stock" indicator badge
                 let mainImg = belt.image_url;
                 if (belt.images) {
                     try {
