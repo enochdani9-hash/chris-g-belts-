@@ -687,7 +687,7 @@
         </div>
     </header>
 
-    <!-- Hero Slideshow Carousel pointing to packaging.jpg -->
+    <!-- Hero Slideshow Carousel pointing to exact GitHub filenames -->
     <div class="hero-slider-container">
         <div class="slideshow" id="heroSlideshow">
             <div class="slide active">
@@ -810,10 +810,11 @@
             "Chris-G Classic White": "Crafted from full-grain Swiss leather featuring an automatic brushed silver ratchet buckle. Includes a free luxury keyholder and premium gift packaging.",
             "Chris-G Smooth Brown": "Warm chestnut brown leather featuring a sleek scratch-resistant sliding track. Includes a free luxury keyholder and premium gift packaging.",
             "Chris-G Smooth Black": "The definitive boardroom classic. Pure obsidian black leather equipped with a micro-adjustable ratchet mechanism. Includes a free luxury keyholder and premium gift packaging.",
-            "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Includes a free luxury keyholder and premium gift packaging."
+            "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Includes a free luxury keyholder and premium gift packaging.",
+            "Chris-G Burgundy Croc": "Striking burgundy crocodile-grain genuine leather paired with a polished gold-tone brass buckle. Includes a free luxury keyholder and premium gift packaging.",
+            "Chris-G Saddle Tan Executive": "Rich saddle-brown leather engineered for everyday elegance and resilience. Includes a free luxury keyholder and premium gift packaging."
         };
 
-        // Hero Slideshow Logic
         let currentSlide = 0;
         function initSlideshow() {
             const slides = document.querySelectorAll('.slide');
@@ -825,12 +826,11 @@
             }, 4000);
         }
 
-        // Social Proof Ticker (every 3 mins)
         const recentBuyers = [
             { name: "Kofi", loc: "Osu", belt: "Smooth Black" },
             { name: "Yaw", loc: "East Legon", belt: "Classic White" },
-            { name: "Nii", loc: "Airport Residential", belt: "Textured Brown" },
-            { name: "Elikem", loc: "Cantonments", belt: "Smooth Brown" }
+            { name: "Nii", loc: "Airport Residential", belt: "Burgundy Croc" },
+            { name: "Elikem", loc: "Cantonments", belt: "Saddle Tan Executive" }
         ];
 
         function startOrderTicker() {
