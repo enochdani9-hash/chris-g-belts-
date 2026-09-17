@@ -180,10 +180,53 @@
             letter-spacing: 0.5px;
         }
 
+        /* Bold Guarantee Trust Banner */
+        .trust-banner {
+            max-width: 760px;
+            margin: 15px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .trust-card {
+            background: linear-gradient(135deg, #161616, #0e0e0e);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .trust-item span.highlight {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 0.3px;
+        }
+        .trust-item span.sub {
+            font-size: 0.72rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .trust-divider {
+            width: 1px;
+            height: 30px;
+            background: var(--border);
+        }
+
         /* Hero Title Section */
         .hero {
             text-align: center;
-            padding: 25px 20px 15px;
+            padding: 20px 20px 15px;
             position: relative;
             z-index: 1;
         }
@@ -687,7 +730,7 @@
         </div>
     </header>
 
-    <!-- Hero Slideshow Carousel pointing to exact GitHub filenames -->
+    <!-- Hero Slideshow Carousel -->
     <div class="hero-slider-container">
         <div class="slideshow" id="heroSlideshow">
             <div class="slide active">
@@ -701,6 +744,26 @@
             <div class="slide">
                 <img src="packaging.jpg" alt="Beautiful Packaging Box">
                 <div class="slide-caption">Exquisite Gift Packaging Included Free</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bold 5-Year Guarantee Trust Banner -->
+    <div class="trust-banner">
+        <div class="trust-card">
+            <div class="trust-item">
+                <span class="highlight">🛡️ 5-YEAR GUARANTEE</span>
+                <span class="sub">Certified Swiss Quality</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="highlight">🚚 PAY ON DELIVERY</span>
+                <span class="sub">Fast Accra Shipping</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="highlight">🎁 100% GENUINE</span>
+                <span class="sub">Full-Grain Leather</span>
             </div>
         </div>
     </div>
@@ -807,12 +870,12 @@
         let previewQuantity = 1;
 
         const beltDescriptions = {
-            "Chris-G Classic White": "Crafted from full-grain Swiss leather featuring an automatic brushed silver ratchet buckle. Includes a free luxury keyholder and premium gift packaging.",
-            "Chris-G Smooth Brown": "Warm chestnut brown leather featuring a sleek scratch-resistant sliding track. Includes a free luxury keyholder and premium gift packaging.",
-            "Chris-G Smooth Black": "The definitive boardroom classic. Pure obsidian black leather equipped with a micro-adjustable ratchet mechanism. Includes a free luxury keyholder and premium gift packaging.",
-            "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Includes a free luxury keyholder and premium gift packaging.",
-            "Chris-G Burgundy Croc": "Striking burgundy crocodile-grain genuine leather paired with a polished gold-tone brass buckle. Includes a free luxury keyholder and premium gift packaging.",
-            "Chris-G Saddle Tan Executive": "Rich saddle-brown leather engineered for everyday elegance and resilience. Includes a free luxury keyholder and premium gift packaging."
+            "Chris-G Classic White": "Crafted from full-grain Swiss leather featuring an automatic brushed silver ratchet buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Smooth Brown": "Warm chestnut brown leather featuring a sleek scratch-resistant sliding track. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Smooth Black": "The definitive boardroom classic. Pure obsidian black leather equipped with a micro-adjustable ratchet mechanism. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Burgundy Croc": "Striking burgundy crocodile-grain genuine leather paired with a gold-tone brass buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Saddle Tan Executive": "Rich saddle-brown leather engineered for everyday elegance and resilience. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging."
         };
 
         let currentSlide = 0;
@@ -843,7 +906,7 @@
         function triggerTickerPopup() {
             const randomBuyer = recentBuyers[Math.floor(Math.random() * recentBuyers.length)];
             document.getElementById('tickerHeader').innerText = `New order in ${randomBuyer.loc}`;
-            document.getElementById('tickerBody').innerText = `${randomBuyer.name} just ordered a Chris-G ${randomBuyer.belt} (Free Keyholder included!)`;
+            document.getElementById('tickerBody').innerText = `${randomBuyer.name} just ordered a Chris-G ${randomBuyer.belt} (5-Year Guarantee)`;
             
             const ticker = document.getElementById('orderTicker');
             ticker.classList.add('show');
@@ -919,7 +982,7 @@
             document.getElementById('previewOrigPrice').innerText = `GH₵${previewBelt.original_price}`;
             document.getElementById('previewStock').innerText = "In Stock";
             document.getElementById('previewDesc').innerText = beltDescriptions[previewBelt.name] || 
-                "High-performance Swiss automatic belt crafted with genuine leather. Includes free delivery in Accra, a luxury keyholder, and beautiful packaging.";
+                "High-performance Swiss automatic belt backed by our 5-Year Guarantee. Includes free delivery in Accra, a luxury keyholder, and beautiful packaging.";
 
             let imageList = [];
             if (previewBelt.images) {
@@ -1112,7 +1175,7 @@
 
             const totalGhc = cart.reduce((sum, i) => sum + (i.sale_price * i.quantity), 0);
             const itemsSummary = cart.map(i => `${i.name} (Qty: ${i.quantity})`).join(', ');
-            const formattedBeltPayload = `${itemsSummary} | Total: GH₵${totalGhc} (Includes Free Keyholder & Box)`;
+            const formattedBeltPayload = `${itemsSummary} | Total: GH₵${totalGhc} (5-Yr Guarantee & Free Keyholder/Box)`;
 
             try {
                 await fetch('https://hook.eu1.make.com/uehjef8tcnwlvg3957zbe6yg4y7qk9gk', {
@@ -1129,7 +1192,7 @@
                 console.log("Webhook alert sent with status:", err);
             }
 
-            alert(`🎉 Order Confirmed!\n\nThank you, ${name}. Your order includes your free keyholder and luxury gift packaging!\n\nWe will call ${phone} shortly to coordinate delivery in Accra!`);
+            alert(`🎉 Order Confirmed!\n\nThank you, ${name}. Your order is backed by our 5-Year Guarantee and includes your free keyholder and luxury box!\n\nWe will call ${phone} shortly to coordinate delivery in Accra!`);
             
             cart = [];
             updateCartDisplay();
