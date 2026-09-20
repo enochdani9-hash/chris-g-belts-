@@ -7,6 +7,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1575298384075202');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1575298384075202&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <style>
         :root {
             --bg: #050505;
@@ -180,7 +198,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Bold Guarantee Trust Banner */
+        /* Bold 5-Year Guarantee Trust Banner */
         .trust-banner {
             max-width: 760px;
             margin: 15px auto;
@@ -1180,7 +1198,7 @@
             try {
                 await fetch('https://hook.eu1.make.com/uehjef8tcnwlvg3957zbe6yg4y7qk9gk', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Type': 'application/json' },
                     body: JSON.stringify({
                         customer_name: name,
                         phone_number: phone,
