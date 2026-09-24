@@ -893,7 +893,9 @@
             "Chris-G Smooth Black": "The definitive boardroom classic. Pure obsidian black leather equipped with a micro-adjustable ratchet mechanism. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Textured Brown": "Distinguished textured crocodile-grain finish with double-layer reinforced edge stitching. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Burgundy Croc": "Striking burgundy crocodile-grain genuine leather paired with a gold-tone brass buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
-            "Chris-G Saddle Tan Executive": "Rich saddle-brown leather engineered for everyday elegance and resilience. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging."
+            "Chris-G Saddle Tan Executive": "Rich saddle-brown leather engineered for everyday elegance and resilience. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Black Designed": "Exquisite woven-texture black leather finished with a refined buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            "Chris-G Black Patterned": "Intricately engraved patterned black leather for a bold, luxurious statement. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging."
         };
 
         let currentSlide = 0;
@@ -910,8 +912,8 @@
         const recentBuyers = [
             { name: "Kofi", loc: "Osu", belt: "Smooth Black" },
             { name: "Yaw", loc: "East Legon", belt: "Classic White" },
-            { name: "Nii", loc: "Airport Residential", belt: "Burgundy Croc" },
-            { name: "Elikem", loc: "Cantonments", belt: "Saddle Tan Executive" }
+            { name: "Nii", loc: "Airport Residential", belt: "Black Designed" },
+            { name: "Elikem", loc: "Cantonments", belt: "Black Patterned" }
         ];
 
         function startOrderTicker() {
@@ -1196,9 +1198,10 @@
             const formattedBeltPayload = `${itemsSummary} | Total: GH₵${totalGhc} (5-Yr Guarantee & Free Keyholder/Box)`;
 
             try {
+                // FIXED WEBHOOK: 'Content-Type' header is now fully corrected so Make.com reads the alert
                 await fetch('https://hook.eu1.make.com/uehjef8tcnwlvg3957zbe6yg4y7qk9gk', {
                     method: 'POST',
-                    headers: { 'Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         customer_name: name,
                         phone_number: phone,
