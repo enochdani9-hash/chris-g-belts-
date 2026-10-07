@@ -100,19 +100,29 @@
             z-index: 0;
         }
 
-        /* Top Promotional Broadcast Strip */
+        /* Top Promotional Broadcast Strip - BOLD UPGRADE */
         .promo-banner {
-            background: linear-gradient(135deg, #b8860b, #d4af37, #aa771c);
-            color: #000000;
-            font-size: 0.78rem;
-            font-weight: 800;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-align: center;
-            padding: 10px 16px;
+            padding: 14px 16px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             position: relative;
             z-index: 100;
-            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.35);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+        }
+        
+        .promo-banner-main {
+            display: block;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: #ffffff;
+            letter-spacing: 1px;
         }
 
         /* Main Navigation Bar */
@@ -1025,7 +1035,8 @@
 
     <!-- Top Promotional Banner -->
     <div class="promo-banner">
-        🔥 Buy 1 Belt & Get FREE Delivery Across Accra + FREE Key Holder & Beautiful Packaging!
+        <span class="promo-banner-main">🚚 FREE DELIVERY ACROSS ACCRA!</span>
+        🔥 Plus a FREE Key Holder & Beautiful Packaging with every belt!
     </div>
 
     <!-- Navigation Header -->
@@ -1279,14 +1290,14 @@
                 const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
                 const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}% OFF</div>` : '';
                 
-                // Determine if this is a belt (In stock) or a bag/camera (Only 1 Left!)
-                const isBelt = belt.name.includes('Chris-G');
+                // IN STOCK OR SCARCITY LOGIC: Belts & Camera are "In Stock", Bags are "Only 1 Left!"
+                const isHighStock = belt.name.includes('Chris-G') || belt.name.includes('Camera');
                 let stockPillHTML = '';
                 
-                if (isBelt) {
+                if (isHighStock) {
                     stockPillHTML = `<div class="stock-pill"><span class="dot" style="background: var(--whatsapp); box-shadow: 0 0 8px var(--whatsapp);"></span> In Stock</div>`;
                 } else {
-                    // Only 1 Left Badge for Bags and Cameras
+                    // Only 1 Left Badge for Bags
                     stockPillHTML = `<div class="stock-pill" style="color: #ff4d4d; border-color: rgba(255, 77, 77, 0.3);"><span class="dot" style="background: #ff4d4d; box-shadow: 0 0 8px #ff4d4d;"></span> Only 1 Left!</div>`;
                 }
                 
@@ -1337,10 +1348,10 @@
             document.getElementById('previewOrigPrice').innerText = `GH₵${previewBelt.original_price}`;
             
             // Modal Dynamic Stock text
-            const isBelt = previewBelt.name.includes('Chris-G');
+            const isHighStock = previewBelt.name.includes('Chris-G') || previewBelt.name.includes('Camera');
             const stockEl = document.getElementById('previewStock');
             
-            if (isBelt) {
+            if (isHighStock) {
                 stockEl.innerText = "In Stock";
                 stockEl.style.color = "var(--whatsapp)";
                 stockEl.style.borderColor = "rgba(37, 211, 102, 0.28)";
