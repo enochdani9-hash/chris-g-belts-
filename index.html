@@ -3,26 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHRIS-G SWISS BELTS | Luxury Swiss Craftsmanship</title>
+    <title>CHRIS-G SWISS BELTS & LUXURY GIFTS | Accra, Ghana</title>
+    
+    <!-- Supabase JavaScript SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1575298384075202');
-    fbq('track', 'PageView');
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1575298384075202');
+        fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1575298384075202&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1575298384075202&ev=PageView&noscript=1"
+        alt="Meta Pixel" />
+    </noscript>
     <!-- End Meta Pixel Code -->
 
     <style>
@@ -30,79 +38,107 @@
             --bg: #050505;
             --surface: #0e0e0e;
             --surface-elevated: #161616;
-            --glass: rgba(14, 14, 14, 0.88);
-            --border: rgba(255, 255, 255, 0.07);
-            --border-hover: rgba(255, 255, 255, 0.18);
+            --surface-hover: #1f1f1f;
+            --glass: rgba(14, 14, 14, 0.90);
+            --glass-card: rgba(22, 22, 22, 0.70);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.22);
             --primary: #ffffff;
+            --secondary: #d1d1d6;
             --muted: #98989f;
             --accent: #E53935;
+            --accent-glow: rgba(229, 57, 53, 0.45);
             --whatsapp: #25D366;
+            --whatsapp-glow: rgba(37, 211, 102, 0.40);
             --gold: #D4AF37;
-            --radius-md: 16px;
-            --radius-lg: 24px;
+            --gold-light: #f5d77f;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow-elevated: 0 16px 45px rgba(0, 0, 0, 0.75);
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
             color: var(--primary);
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Ambient luxury glow */
+        /* Ambient luxury background glow */
         .ambient-glow {
             position: fixed;
-            top: -120px;
+            top: -150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 700px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(229, 57, 53, 0.04) 40%, rgba(0,0,0,0) 70%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(
+                circle,
+                rgba(212, 175, 55, 0.08) 0%,
+                rgba(229, 57, 53, 0.05) 35%,
+                rgba(0, 0, 0, 0) 70%
+            );
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Top Promo Banner */
+        /* Top Promotional Broadcast Strip */
         .promo-banner {
             background: linear-gradient(135deg, #b8860b, #d4af37, #aa771c);
-            color: #000;
+            color: #000000;
             font-size: 0.78rem;
             font-weight: 800;
             text-align: center;
-            padding: 10px 15px;
+            padding: 10px 16px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             position: relative;
-            z-index: 95;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.35);
         }
 
-        /* Navigation Header */
+        /* Main Navigation Bar */
         header {
             position: sticky;
             top: 0;
-            z-index: 90;
+            z-index: 95;
             background: var(--glass);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
             border-bottom: 1px solid var(--border);
             padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .brand-name {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 800;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 40%, #888888);
+            background: linear-gradient(135deg, #ffffff 40%, #a1a1a6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            user-select: none;
         }
 
         .header-actions {
@@ -114,53 +150,67 @@
         .badge-delivery {
             display: none;
             background: rgba(37, 211, 102, 0.08);
-            border: 1px solid rgba(37, 211, 102, 0.2);
+            border: 1px solid rgba(37, 211, 102, 0.25);
             color: var(--whatsapp);
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
             padding: 6px 12px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.6px;
         }
-        @media(min-width: 480px) { .badge-delivery { display: inline-block; } }
 
-        /* Cart Launcher Button */
+        @media (min-width: 520px) {
+            .badge-delivery {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+        }
+
         .cart-trigger {
             position: relative;
             background: var(--surface-elevated);
             border: 1px solid var(--border);
-            color: #fff;
-            padding: 9px 16px;
+            color: #ffffff;
+            padding: 9px 18px;
             border-radius: 12px;
             font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.25s ease;
+            gap: 10px;
+            transition: var(--transition-smooth);
         }
-        .cart-trigger:hover { border-color: var(--border-hover); background: #202020; }
+
+        .cart-trigger:hover {
+            border-color: var(--border-hover);
+            background: var(--surface-hover);
+            transform: translateY(-1px);
+        }
+
         .cart-count {
             background: var(--accent);
-            color: white;
+            color: #ffffff;
             font-size: 0.7rem;
             font-weight: 800;
             border-radius: 20px;
             padding: 2px 7px;
             min-width: 18px;
             text-align: center;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
-        /* Hero Slideshow Carousel Styles */
+        /* Hero Slideshow Carousel */
         .hero-slider-container {
             max-width: 760px;
-            margin: 25px auto 10px;
+            margin: 24px auto 12px;
             padding: 0 20px;
             position: relative;
             z-index: 1;
         }
+
         .slideshow {
             position: relative;
             width: 100%;
@@ -168,109 +218,167 @@
             border-radius: var(--radius-lg);
             overflow: hidden;
             border: 1px solid var(--border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-            background: #111;
+            box-shadow: var(--shadow-elevated);
+            background: #111111;
         }
-        @media(min-width: 600px) { .slideshow { height: 340px; } }
-        
+
+        @media (min-width: 600px) {
+            .slideshow {
+                height: 340px;
+            }
+        }
+
         .slide {
             position: absolute;
             inset: 0;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
         }
-        .slide.active { opacity: 1; }
+
+        .slide.active {
+            opacity: 1;
+        }
+
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .slide-caption {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-            padding: 20px 20px 14px;
-            color: #fff;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.90), transparent);
+            padding: 24px 20px 16px;
+            color: #ffffff;
             font-size: 0.95rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
-        /* Bold 5-Year Guarantee Trust Banner */
+        /* Trust & Guarantee Banner */
         .trust-banner {
             max-width: 760px;
-            margin: 15px auto;
+            margin: 16px auto;
             padding: 0 20px;
             position: relative;
             z-index: 1;
         }
+
         .trust-card {
             background: linear-gradient(135deg, #161616, #0e0e0e);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 16px;
             padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-around;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-subtle);
         }
+
         .trust-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 4px;
         }
+
         .trust-item span.highlight {
             font-size: 0.95rem;
             font-weight: 800;
             color: var(--gold);
             letter-spacing: 0.3px;
         }
+
         .trust-item span.sub {
             font-size: 0.72rem;
             color: var(--muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
         }
+
         .trust-divider {
             width: 1px;
-            height: 30px;
+            height: 32px;
             background: var(--border);
         }
 
-        /* Hero Title Section */
+        /* Hero Headline & Introductory Statement */
         .hero {
             text-align: center;
-            padding: 20px 20px 15px;
+            padding: 20px 20px 10px;
             position: relative;
             z-index: 1;
         }
+
         .hero h2 {
-            font-size: 1.8rem;
+            font-size: 1.85rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 6px;
-            background: linear-gradient(180deg, #fff 20%, #bbb);
+            background: linear-gradient(180deg, #ffffff 30%, #b0b0b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .hero p {
             color: var(--muted);
             font-size: 0.88rem;
-            max-width: 460px;
+            max-width: 480px;
             margin: 0 auto;
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
-        /* Product Grid */
+        /* Hot Deals & Special Gifting Banner */
+        .hot-deals-banner {
+            background: linear-gradient(135deg, rgba(229, 57, 53, 0.92) 0%, rgba(183, 28, 28, 0.95) 100%);
+            border-radius: var(--radius-lg);
+            margin: 24px auto 14px;
+            max-width: 720px;
+            padding: 22px 20px;
+            text-align: center;
+            box-shadow: 0 14px 35px var(--accent-glow);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: softPulse 3.5s infinite alternate;
+        }
+
+        @keyframes softPulse {
+            0% {
+                box-shadow: 0 10px 30px rgba(229, 57, 53, 0.25);
+            }
+            100% {
+                box-shadow: 0 18px 45px rgba(229, 57, 53, 0.50);
+            }
+        }
+
+        .hot-deals-banner h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hot-deals-banner p {
+            font-size: 0.92rem;
+            color: #fce4ec;
+            font-weight: 500;
+            line-height: 1.45;
+        }
+
+        /* Product Display Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-            gap: 18px;
-            padding: 20px;
+            gap: 20px;
+            padding: 10px 20px 20px;
             max-width: 760px;
             margin: 0 auto 90px;
             position: relative;
@@ -278,58 +386,66 @@
         }
 
         .card {
-            background: var(--surface);
+            background: var(--glass-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: var(--transition-smooth);
             position: relative;
         }
+
         .card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             border-color: var(--border-hover);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+            box-shadow: var(--shadow-elevated);
         }
 
         .img-wrap {
             position: relative;
             width: 100%;
-            height: 190px;
-            background: #121212;
+            height: 195px;
+            background: #000000;
             overflow: hidden;
         }
+
         .img-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .card:hover .img-wrap img { transform: scale(1.06); }
+
+        .card:hover .img-wrap img {
+            transform: scale(1.08);
+        }
 
         .discount-pill {
             position: absolute;
             top: 10px;
             left: 10px;
             background: var(--accent);
-            color: #fff;
+            color: #ffffff;
             font-size: 0.65rem;
             font-weight: 800;
-            padding: 4px 8px;
-            border-radius: 6px;
+            padding: 5px 9px;
+            border-radius: 8px;
             z-index: 2;
-            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+            box-shadow: 0 4px 12px var(--accent-glow);
+            letter-spacing: 0.5px;
         }
 
         .stock-pill {
             position: absolute;
             bottom: 10px;
             right: 10px;
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #e2e2e7;
             font-size: 0.65rem;
             font-weight: 700;
@@ -339,27 +455,29 @@
             align-items: center;
             gap: 5px;
         }
+
         .stock-pill span.dot {
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             background: var(--whatsapp);
             border-radius: 50%;
             box-shadow: 0 0 8px var(--whatsapp);
         }
 
         .card-info {
-            padding: 14px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
             justify-content: space-between;
         }
+
         .card-title {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 700;
             color: #f2f2f7;
             margin-bottom: 8px;
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
         .price-line {
@@ -368,11 +486,13 @@
             gap: 8px;
             margin-bottom: 14px;
         }
+
         .price-now {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--gold);
         }
+
         .price-was {
             font-size: 0.75rem;
             color: var(--muted);
@@ -381,27 +501,33 @@
 
         .card-actions {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1fr 1.25fr;
             gap: 8px;
         }
+
         .btn-view {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
-            color: #d1d1d6;
+            color: var(--secondary);
             padding: 10px 0;
             border-radius: 10px;
             font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition-smooth);
             text-align: center;
         }
-        .btn-view:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
+
+        .btn-view:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
 
         .btn-add {
             background: #ffffff;
             border: none;
-            color: #000;
+            color: #000000;
             padding: 10px 0;
             border-radius: 10px;
             font-size: 0.75rem;
@@ -410,81 +536,112 @@
             transition: background 0.2s, transform 0.1s;
             text-align: center;
         }
-        .btn-add:hover { background: #e0e0e0; }
-        .btn-add:active { transform: scale(0.97); }
 
-        /* Floating WhatsApp Quick-Chat */
+        .btn-add:hover {
+            background: #e6e6e6;
+        }
+
+        .btn-add:active {
+            transform: scale(0.97);
+        }
+
+        /* Floating WhatsApp Customer Support */
         .wa-float {
             position: fixed;
             bottom: 24px;
             right: 24px;
             background: var(--whatsapp);
-            color: #fff;
-            width: 58px;
-            height: 58px;
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-            z-index: 85;
+            box-shadow: 0 10px 30px var(--whatsapp-glow);
+            z-index: 90;
             text-decoration: none;
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .wa-float:hover { transform: scale(1.1); }
-        .wa-float svg { width: 30px; height: 30px; fill: currentColor; }
 
-        /* Subdued order notification ticker (every 3 mins) */
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
+
+        .wa-float svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        /* Subdued Social Proof Notification Ticker */
         .order-ticker {
             position: fixed;
             bottom: 24px;
             left: 20px;
-            background: rgba(14, 14, 14, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 12px 16px;
-            border-radius: 14px;
-            z-index: 80;
+            background: rgba(14, 14, 14, 0.95);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 13px 18px;
+            border-radius: 16px;
+            z-index: 85;
             display: flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.7);
-            max-width: 320px;
-            transform: translateY(140%);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75);
+            max-width: 330px;
+            transform: translateY(150%);
             opacity: 0;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
-        .order-ticker.show { transform: translateY(0); opacity: 1; }
+
+        .order-ticker.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         .ticker-icon {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             background: rgba(37, 211, 102, 0.12);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--whatsapp);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             flex-shrink: 0;
-            border: 1px solid rgba(37, 211, 102, 0.25);
+            border: 1px solid rgba(37, 211, 102, 0.3);
         }
-        .ticker-text { font-size: 0.78rem; color: #a1a1a6; line-height: 1.35; }
-        .ticker-text strong { color: #fff; display: block; font-size: 0.82rem; margin-bottom: 1px; }
 
-        /* General Modal Backdrop */
+        .ticker-text {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+
+        .ticker-text strong {
+            color: #ffffff;
+            display: block;
+            font-size: 0.83rem;
+            margin-bottom: 2px;
+        }
+
+        /* Product Preview Modal Structure */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 200;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.86);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             align-items: center;
             justify-content: center;
             padding: 16px;
         }
+
         .modal-box {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -494,57 +651,117 @@
             overflow: hidden;
             position: relative;
             animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85);
         }
+
         @keyframes modalPop {
-            0% { transform: scale(0.94); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0.92);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .btn-close {
             position: absolute;
             top: 14px;
             right: 14px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
             width: 34px;
             height: 34px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 10;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
+            transition: var(--transition-smooth);
         }
-        .btn-close:hover { background: rgba(255,255,255,0.2); }
 
-        .preview-img-box { width: 100%; height: 280px; background: #121212; position: relative; }
-        .preview-img-box img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .gallery-thumbs { display: flex; gap: 8px; padding: 12px 20px 0; overflow-x: auto; }
+        .btn-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .preview-img-box {
+            width: 100%;
+            height: 280px;
+            background: #121212;
+            position: relative;
+        }
+
+        .preview-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 8px;
+            padding: 12px 20px 0;
+            overflow-x: auto;
+        }
+
         .thumb-img {
-            width: 52px; height: 52px; border-radius: 10px; object-fit: cover; cursor: pointer;
-            border: 2px solid transparent; opacity: 0.5; transition: all 0.2s; flex-shrink: 0; background: #181818;
+            width: 54px;
+            height: 54px;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.5;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+            background: #181818;
         }
-        .thumb-img.active { border-color: #fff; opacity: 1; transform: scale(1.05); }
 
-        .preview-content { padding: 22px 24px 26px; }
-        .preview-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-        .preview-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; }
+        .thumb-img.active {
+            border-color: #ffffff;
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .preview-content {
+            padding: 22px 24px 26px;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .preview-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+        }
+
         .preview-stock {
             color: var(--whatsapp);
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 700;
             background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.25);
+            border: 1px solid rgba(37, 211, 102, 0.28);
             padding: 4px 10px;
             border-radius: 20px;
             margin-top: 4px;
         }
-        .preview-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
+
+        .preview-desc {
+            font-size: 0.86rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
 
         .qty-picker {
             display: flex;
@@ -556,7 +773,15 @@
             border-radius: 12px;
             border: 1px solid var(--border);
         }
-        .qty-picker label { font-size: 0.75rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.8px; }
+
+        .qty-picker label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
         .qty-controls {
             display: inline-flex;
             align-items: center;
@@ -565,32 +790,43 @@
             border-radius: 10px;
             overflow: hidden;
         }
+
         .qty-btn {
             background: transparent;
             border: none;
-            color: #fff;
-            width: 34px;
-            height: 34px;
-            font-size: 1.1rem;
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            font-size: 1.15rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: background 0.2s;
         }
-        .qty-btn:hover { background: rgba(255,255,255,0.08); }
-        .qty-num { width: 34px; text-align: center; font-weight: 700; font-size: 0.95rem; }
 
-        /* Cart Drawer System */
+        .qty-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .qty-num {
+            width: 34px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Cart Drawer Slide-out */
         .cart-drawer-overlay {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 250;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
+
         .cart-drawer {
             position: fixed;
             top: 0;
@@ -605,9 +841,12 @@
             flex-direction: column;
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: -20px 0 50px rgba(0,0,0,0.8);
+            box-shadow: -20px 0 55px rgba(0, 0, 0, 0.85);
         }
-        .cart-drawer.open { transform: translateX(0); }
+
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
 
         .cart-top {
             padding: 20px 24px;
@@ -616,7 +855,12 @@
             justify-content: space-between;
             align-items: center;
         }
-        .cart-top h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.5px; }
+
+        .cart-top h3 {
+            font-size: 1.18rem;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+        }
 
         .cart-items-scroll {
             flex-grow: 1;
@@ -632,7 +876,13 @@
             padding: 70px 20px;
             color: var(--muted);
         }
-        .cart-empty-state svg { width: 48px; height: 48px; stroke: #444; margin-bottom: 14px; }
+
+        .cart-empty-state svg {
+            width: 48px;
+            height: 48px;
+            stroke: #444444;
+            margin-bottom: 14px;
+        }
 
         .cart-item {
             display: flex;
@@ -643,36 +893,57 @@
             padding: 12px;
             align-items: center;
         }
+
         .cart-item img {
             width: 65px;
             height: 65px;
             border-radius: 10px;
             object-fit: cover;
-            background: #000;
+            background: #000000;
         }
-        .cart-item-details { flex-grow: 1; }
-        .cart-item-name { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        .cart-item-price { font-size: 0.82rem; color: var(--gold); font-weight: 700; }
-        
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 0.82rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
         .cart-item-controls {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-top: 8px;
         }
+
         .mini-btn {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border: none;
-            color: #fff;
+            color: #ffffff;
             width: 26px;
             height: 26px;
             border-radius: 7px;
             font-size: 0.85rem;
             cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: background 0.2s;
         }
-        .mini-btn:hover { background: rgba(255,255,255,0.18); }
+
+        .mini-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
         .cart-footer {
             border-top: 1px solid var(--border);
@@ -686,8 +957,17 @@
             align-items: center;
             margin-bottom: 18px;
         }
-        .subtotal-row span { font-size: 0.9rem; color: var(--muted); }
-        .subtotal-row strong { font-size: 1.3rem; font-weight: 800; color: #fff; }
+
+        .subtotal-row span {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .subtotal-row strong {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
 
         .checkout-fields {
             display: flex;
@@ -695,10 +975,11 @@
             gap: 12px;
             margin-bottom: 18px;
         }
+
         .checkout-fields input {
             background: #141414;
             border: 1px solid var(--border);
-            color: #fff;
+            color: #ffffff;
             padding: 13px 16px;
             border-radius: 12px;
             font-size: 0.88rem;
@@ -706,12 +987,16 @@
             outline: none;
             transition: border-color 0.2s, background 0.2s;
         }
-        .checkout-fields input:focus { border-color: rgba(255,255,255,0.4); background: #1a1a1a; }
+
+        .checkout-fields input:focus {
+            border-color: rgba(255, 255, 255, 0.45);
+            background: #1b1b1b;
+        }
 
         .btn-checkout {
             background: var(--whatsapp);
             border: none;
-            color: #fff;
+            color: #ffffff;
             width: 100%;
             padding: 15px;
             border-radius: 12px;
@@ -720,35 +1005,48 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+            box-shadow: 0 8px 25px var(--whatsapp-glow);
             transition: opacity 0.2s, transform 0.1s;
         }
-        .btn-checkout:hover { opacity: 0.93; }
-        .btn-checkout:active { transform: scale(0.98); }
-        .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .btn-checkout:hover {
+            opacity: 0.94;
+        }
+
+        .btn-checkout:active {
+            transform: scale(0.98);
+        }
+
+        .btn-checkout:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Ambient Luxury Background Element -->
     <div class="ambient-glow"></div>
 
-    <!-- Huge Top Promo Banner -->
+    <!-- Top Promotional Banner -->
     <div class="promo-banner">
         🔥 Buy 1 Belt & Get FREE Delivery Across Accra + FREE Key Holder & Beautiful Packaging!
     </div>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Header -->
     <header>
         <div class="brand-name">CHRIS-G SWISS</div>
         <div class="header-actions">
-            <div class="badge-delivery">Pay on Delivery • Accra</div>
+            <div class="badge-delivery">
+                <span>●</span> Pay on Delivery • Accra
+            </div>
             <button class="cart-trigger" onclick="openCart()">
                 Cart <span class="cart-count" id="cartCountBadge">0</span>
             </button>
         </div>
     </header>
 
-    <!-- Hero Slideshow Carousel -->
+    <!-- Hero Slideshow Carousel Section -->
     <div class="hero-slider-container">
         <div class="slideshow" id="heroSlideshow">
             <div class="slide active">
@@ -766,7 +1064,7 @@
         </div>
     </div>
 
-    <!-- Bold 5-Year Guarantee Trust Banner -->
+    <!-- Certified 5-Year Guarantee Trust Banner -->
     <div class="trust-banner">
         <div class="trust-card">
             <div class="trust-item">
@@ -781,21 +1079,27 @@
             <div class="trust-divider"></div>
             <div class="trust-item">
                 <span class="highlight">🎁 100% GENUINE</span>
-                <span class="sub">Full-Grain Leather</span>
+                <span class="sub">Premium Full-Grain Leather</span>
             </div>
         </div>
     </div>
 
-    <!-- Hero Title -->
+    <!-- Hero Headline & Intro -->
     <section class="hero">
-        <h2>Curated Swiss Belts</h2>
-        <p>Ultra-durable automatic buckles and genuine leather. Select your favorites, choose your quantity, and pay upon physical arrival.</p>
+        <h2>Curated Swiss Belts & Luxury Gifts</h2>
+        <p>Engineered automatic ratchet buckles, authentic full-grain leather, and designer gift accessories. Select your items and pay upon arrival in Accra.</p>
     </section>
 
-    <!-- Product Grid -->
+    <!-- Hot Deals Banner -->
+    <section class="hot-deals-banner">
+        <h2>🔥 HOT DEALS: Gifts & Gadgets</h2>
+        <p>Spoil yourself, or buy the perfect gift for friends and loved ones. Special discounted rates applied!</p>
+    </section>
+
+    <!-- Main Catalog Product Grid -->
     <main class="grid" id="beltContainer"></main>
 
-    <!-- Social Proof Ticker (Fires every 3 minutes) -->
+    <!-- Social Proof Notification Ticker -->
     <div class="order-ticker" id="orderTicker">
         <div class="ticker-icon">✓</div>
         <div class="ticker-text">
@@ -804,20 +1108,22 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp Customer Service (UPDATED NUMBER) -->
-    <a href="https://wa.me/233262553260?text=Hello%20Chris-G%20Swiss%20Belts,%20I'm%20inquiring%20about%20your%20belts%20in%20Accra." 
+    <!-- Floating WhatsApp Customer Service -->
+    <a href="https://wa.me/233262553260?text=Hello%20Chris-G%20Swiss%20Belts,%20I'm%20inquiring%20about%20an%20order%20in%20Accra." 
        class="wa-float" 
        target="_blank" 
        title="Inquire on WhatsApp (+233 26 255 3260)">
-        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <svg viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
     </a>
 
-    <!-- Product Preview Modal -->
+    <!-- Product Preview Details Modal -->
     <div class="modal-overlay" id="previewModal">
         <div class="modal-box">
-            <button class="btn-close" onclick="closePreview()">&times;</button>
+            <button class="btn-close" onclick="closePreview()" aria-label="Close modal">&times;</button>
             <div class="preview-img-box">
-                <img id="activePreviewImg" src="" alt="Belt preview">
+                <img id="activePreviewImg" src="" alt="Product preview">
             </div>
             <div class="gallery-thumbs" id="galleryThumbsContainer"></div>
 
@@ -849,12 +1155,12 @@
         </div>
     </div>
 
-    <!-- Cart Drawer -->
+    <!-- Slide-out Cart Drawer -->
     <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart()"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-top">
-            <h3>Your Selected Belts</h3>
-            <button class="btn-close" style="position: static;" onclick="closeCart()">&times;</button>
+            <h3>Your Selected Items</h3>
+            <button class="btn-close" style="position: static;" onclick="closeCart()" aria-label="Close cart">&times;</button>
         </div>
 
         <div class="cart-items-scroll" id="cartItemsContainer"></div>
@@ -877,6 +1183,7 @@
         </div>
     </div>
 
+    <!-- Application JavaScript Execution -->
     <script>
         const supabaseUrl = 'https://kadyjwbdrmnavjgwmrse.supabase.co';
         const supabaseKey = 'sb_publishable_6XKVRJnKzAa-DSpeuiqsHg_M8-OdEAT';
@@ -887,6 +1194,7 @@
         let previewBelt = null;
         let previewQuantity = 1;
 
+        // Comprehensive Catalog Descriptions
         const beltDescriptions = {
             "Chris-G Classic White": "Crafted from full-grain Swiss leather featuring an automatic brushed silver ratchet buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Smooth Brown": "Warm chestnut brown leather featuring a sleek scratch-resistant sliding track. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
@@ -895,13 +1203,22 @@
             "Chris-G Burgundy Croc": "Striking burgundy crocodile-grain genuine leather paired with a gold-tone brass buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Saddle Tan Executive": "Rich saddle-brown leather engineered for everyday elegance and resilience. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Black Designed": "Exquisite woven-texture black leather finished with a refined buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
-            "Chris-G Black Patterned": "Intricately engraved patterned black leather for a bold, luxurious statement. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging."
+            "Chris-G Black Patterned": "Intricately engraved patterned black leather for a bold, luxurious statement. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
+            
+            // Bags and Lifestyle Gadgets
+            "A9 HD Mini Wireless Camera": "Discreet, high-definition A9 HD Battery IP Camera. Features Wi-Fi remote viewing and dual TF Card/Cloud storage options for premium home and office security.",
+            "Luxury Black 'C' Crossbody": "Elegant black crossbody clutch featuring a premium gold-tone 'C' buckle closure. A perfect luxury gift for friends or loved ones.",
+            "Pegasus Tote & Pouch Set": "Stylish black tote bag with a striking Pegasus unicorn pattern. Includes a matching wristlet pouch for ultimate everyday convenience.",
+            "Leopard Print Statement Tote": "Spacious and bold leopard print tote bag with premium dark trims. Ideal for everyday carry or a chic weekend gift.",
+            "White Snakeskin Accent Bag": "Sophisticated white handbag elevated by a beautiful snakeskin-textured flap and elegant gold hardware. An amazing gift!",
+            "Fuzzy Pink Heart Shoulder Bag": "Trendy, ultra-soft plush shoulder bag featuring a cute pink and magenta heart design. A fun and lovely gift for a loved one."
         };
 
+        // Hero Slideshow System
         let currentSlide = 0;
         function initSlideshow() {
             const slides = document.querySelectorAll('.slide');
-            if(slides.length === 0) return;
+            if (slides.length === 0) return;
             setInterval(() => {
                 slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
@@ -909,37 +1226,43 @@
             }, 4000);
         }
 
+        // Live Order Ticker across Accra Prime Neighborhoods
         const recentBuyers = [
-            { name: "Kofi", loc: "Osu", belt: "Smooth Black" },
-            { name: "Yaw", loc: "East Legon", belt: "Classic White" },
-            { name: "Nii", loc: "Airport Residential", belt: "Black Designed" },
-            { name: "Elikem", loc: "Cantonments", belt: "Black Patterned" }
+            { name: "Kofi", loc: "Osu", belt: "Smooth Black Belt" },
+            { name: "Yaw", loc: "East Legon", belt: "Classic White Belt" },
+            { name: "Sarah", loc: "Airport Residential", belt: "White Snakeskin Accent Bag" },
+            { name: "Elikem", loc: "Cantonments", belt: "A9 HD Mini Wireless Camera" },
+            { name: "Ama", loc: "Dzorwulu", belt: "Pegasus Tote & Pouch Set" },
+            { name: "Nii", loc: "Ridge", belt: "Black Designed Belt" },
+            { name: "Kweku", loc: "Spintex", belt: "Saddle Tan Executive Belt" },
+            { name: "Abena", loc: "Labone", belt: "Luxury Black 'C' Crossbody" }
         ];
 
         function startOrderTicker() {
             setTimeout(() => {
                 triggerTickerPopup();
-                setInterval(triggerTickerPopup, 180000);
+                setInterval(triggerTickerPopup, 180000); // Triggers every 3 minutes
             }, 15000);
         }
 
         function triggerTickerPopup() {
             const randomBuyer = recentBuyers[Math.floor(Math.random() * recentBuyers.length)];
             document.getElementById('tickerHeader').innerText = `New order in ${randomBuyer.loc}`;
-            document.getElementById('tickerBody').innerText = `${randomBuyer.name} just ordered a Chris-G ${randomBuyer.belt} (5-Year Guarantee)`;
+            document.getElementById('tickerBody').innerText = `${randomBuyer.name} just ordered a ${randomBuyer.belt}`;
             
             const ticker = document.getElementById('orderTicker');
             ticker.classList.add('show');
 
             setTimeout(() => {
                 ticker.classList.remove('show');
-            }, 5000);
+            }, 5500);
         }
 
+        // Fetch Catalog from Supabase
         async function fetchBelts() {
             const { data, error } = await supabaseClient.from('belts').select('*');
             if (error) {
-                console.error("Supabase Error:", error);
+                console.error("Supabase Query Error:", error);
                 return;
             }
             beltCatalog = data;
@@ -948,29 +1271,30 @@
             initSlideshow();
         }
 
+        // Render Dynamic Product Grid
         function renderBelts() {
             const container = document.getElementById('beltContainer');
             container.innerHTML = '';
 
             beltCatalog.forEach(belt => {
                 const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
-                const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}%</div>` : '';
+                const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}% OFF</div>` : '';
                 
                 let mainImg = belt.image_url;
                 if (belt.images) {
                     try {
                         const parsed = typeof belt.images === 'string' ? JSON.parse(belt.images) : belt.images;
                         if (Array.isArray(parsed) && parsed.length > 0) mainImg = parsed[0];
-                    } catch(e) {}
+                    } catch (e) {}
                 }
-                mainImg = mainImg || 'https://placehold.co/400x400/181818/888?text=Swiss+Belt';
+                mainImg = mainImg || 'https://placehold.co/400x400/181818/888?text=Luxury+Item';
 
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     ${discountBadge}
                     <div class="img-wrap">
-                        <img src="${mainImg}" alt="${belt.name}">
+                        <img src="${mainImg}" alt="${belt.name}" loading="lazy">
                         <div class="stock-pill"><span class="dot"></span> In Stock</div>
                     </div>
                     <div class="card-info">
@@ -991,6 +1315,7 @@
             });
         }
 
+        // Modal Preview Controls
         function openPreview(beltId) {
             previewBelt = beltCatalog.find(b => b.id === beltId);
             if (!previewBelt) return;
@@ -1001,21 +1326,22 @@
             document.getElementById('previewPrice').innerText = `GH₵${previewBelt.sale_price}`;
             document.getElementById('previewOrigPrice').innerText = `GH₵${previewBelt.original_price}`;
             document.getElementById('previewStock').innerText = "In Stock";
+            
             document.getElementById('previewDesc').innerText = beltDescriptions[previewBelt.name] || 
-                "High-performance Swiss automatic belt backed by our 5-Year Guarantee. Includes free delivery in Accra, a luxury keyholder, and beautiful packaging.";
+                "Premium quality item backed by our robust guarantees. Perfect as an upgrade for yourself or a gift for a loved one.";
 
             let imageList = [];
             if (previewBelt.images) {
                 try {
                     const parsed = typeof previewBelt.images === 'string' ? JSON.parse(previewBelt.images) : previewBelt.images;
                     if (Array.isArray(parsed)) imageList = parsed;
-                } catch(e) {}
+                } catch (e) {}
             }
             if (imageList.length === 0 && previewBelt.image_url) {
                 imageList = [previewBelt.image_url];
             }
             if (imageList.length === 0) {
-                imageList = ['https://placehold.co/400x400/181818/888?text=Swiss+Belt'];
+                imageList = ['https://placehold.co/400x400/181818/888?text=Product'];
             }
 
             document.getElementById('activePreviewImg').src = imageList[0];
@@ -1064,6 +1390,7 @@
             openCart();
         }
 
+        // Cart Architecture
         function addToCart(beltId, qty) {
             const belt = beltCatalog.find(b => b.id === beltId);
             if (!belt) return;
@@ -1073,7 +1400,7 @@
                 try {
                     const parsed = typeof belt.images === 'string' ? JSON.parse(belt.images) : belt.images;
                     if (Array.isArray(parsed) && parsed.length > 0) mainImg = parsed[0];
-                } catch(e) {}
+                } catch (e) {}
             }
 
             const existingIndex = cart.findIndex(item => item.id === beltId);
@@ -1112,9 +1439,13 @@
             if (cart.length === 0) {
                 container.innerHTML = `
                     <div class="cart-empty-state">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="9" cy="21" r="1"/>
+                            <circle cx="20" cy="21" r="1"/>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
                         <p>Your bag is empty.</p>
-                        <span style="font-size:0.75rem; color:#666;">Choose a belt to begin.</span>
+                        <span style="font-size:0.75rem; color:#666666;">Choose an item to begin.</span>
                     </div>
                 `;
                 document.getElementById('cartSubtotal').innerText = "GH₵0";
@@ -1158,9 +1489,10 @@
             document.getElementById('cartOverlay').style.display = 'none';
         }
 
+        // Checkout & Database Sync Execution
         async function submitCartOrder() {
             if (cart.length === 0) {
-                alert("Your cart is empty. Please select at least one belt!");
+                alert("Your cart is empty. Please select at least one item!");
                 return;
             }
 
@@ -1186,7 +1518,7 @@
 
             const { error } = await supabaseClient.from('orders').insert(orderRows);
             if (error) {
-                console.error("Order error:", error);
+                console.error("Supabase Order Insertion Error:", error);
                 alert("Could not process order. Please check your network and try again.");
                 btn.innerText = "Confirm Pay-on-Delivery Order";
                 btn.disabled = false;
@@ -1195,9 +1527,10 @@
 
             const totalGhc = cart.reduce((sum, i) => sum + (i.sale_price * i.quantity), 0);
             const itemsSummary = cart.map(i => `${i.name} (Qty: ${i.quantity})`).join(', ');
-            const formattedBeltPayload = `${itemsSummary} | Total: GH₵${totalGhc} (5-Yr Guarantee & Free Keyholder/Box)`;
+            const formattedPayload = `${itemsSummary} | Total: GH₵${totalGhc}`;
 
             try {
+                // Correctly typed Make.com webhook headers
                 await fetch('https://hook.eu1.make.com/uehjef8tcnwlvg3957zbe6yg4y7qk9gk', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1205,14 +1538,14 @@
                         customer_name: name,
                         phone_number: phone,
                         delivery_location: location,
-                        belt_id: formattedBeltPayload
+                        belt_id: formattedPayload
                     })
                 });
             } catch (err) {
-                console.log("Webhook alert sent with status:", err);
+                console.log("Webhook dispatch logged:", err);
             }
 
-            alert(`🎉 Order Confirmed!\n\nThank you, ${name}. Your order is backed by our 5-Year Guarantee and includes your free keyholder and luxury box!\n\nWe will call ${phone} shortly to coordinate delivery in Accra!`);
+            alert(`🎉 Order Confirmed!\n\nThank you, ${name}. Your items are confirmed!\n\nWe will call ${phone} shortly to coordinate your fast delivery in Accra!`);
             
             cart = [];
             updateCartDisplay();
@@ -1224,6 +1557,7 @@
             btn.disabled = false;
         }
 
+        // Run Catalog Initialization
         fetchBelts();
     </script>
 </body>
