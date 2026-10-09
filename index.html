@@ -383,6 +383,22 @@
             line-height: 1.45;
         }
 
+        /* Section Titles for Categories */
+        .section-title {
+            max-width: 760px;
+            margin: 40px auto 10px;
+            padding: 0 20px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
         /* Product Display Grid */
         .grid {
             display: grid;
@@ -390,7 +406,7 @@
             gap: 20px;
             padding: 10px 20px 20px;
             max-width: 760px;
-            margin: 0 auto 90px;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
         }
@@ -1102,8 +1118,13 @@
         <p>Spoil yourself, or buy the perfect gift for friends and loved ones. Special discounted rates applied!</p>
     </section>
 
-    <!-- Main Catalog Product Grid -->
-    <main class="grid" id="beltContainer"></main>
+    <!-- MEN'S WEAR SECTION -->
+    <h3 class="section-title">Men's Wear & Gadgets</h3>
+    <main class="grid" id="mensContainer"></main>
+
+    <!-- WOMEN'S BAGS SECTION -->
+    <h3 class="section-title" style="margin-top: 10px;">Women's Luxury Bags</h3>
+    <main class="grid" id="womensContainer" style="margin-bottom: 90px;"></main>
 
     <!-- Social Proof Notification Ticker -->
     <div class="order-ticker" id="orderTicker">
@@ -1281,20 +1302,23 @@
             initSlideshow();
         }
 
-        // Render Dynamic Product Grid
+        // Render Dynamic Product Grids (Separated Categories)
         function renderBelts() {
-            const container = document.getElementById('beltContainer');
-            container.innerHTML = '';
+            const mensContainer = document.getElementById('mensContainer');
+            const womensContainer = document.getElementById('womensContainer');
+            
+            mensContainer.innerHTML = '';
+            womensContainer.innerHTML = '';
 
             beltCatalog.forEach(belt => {
                 const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
                 const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}% OFF</div>` : '';
                 
-                // IN STOCK OR SCARCITY LOGIC: Belts & Camera are "In Stock", Bags are "Only 1 Left!"
-                const isHighStock = belt.name.includes('Chris-G') || belt.name.includes('Camera');
+                // CATEGORY & STOCK LOGIC
+                const isMensItem = belt.name.includes('Chris-G') || belt.name.includes('Camera');
                 let stockPillHTML = '';
                 
-                if (isHighStock) {
+                if (isMensItem) {
                     stockPillHTML = `<div class="stock-pill"><span class="dot" style="background: var(--whatsapp); box-shadow: 0 0 8px var(--whatsapp);"></span> In Stock</div>`;
                 } else {
                     // Only 1 Left Badge for Bags
@@ -1332,7 +1356,13 @@
                         </div>
                     </div>
                 `;
-                container.appendChild(card);
+                
+                // Append to correct category container
+                if (isMensItem) {
+                    mensContainer.appendChild(card);
+                } else {
+                    womensContainer.appendChild(card);
+                }
             });
         }
 
@@ -1348,10 +1378,10 @@
             document.getElementById('previewOrigPrice').innerText = `GH₵${previewBelt.original_price}`;
             
             // Modal Dynamic Stock text
-            const isHighStock = previewBelt.name.includes('Chris-G') || previewBelt.name.includes('Camera');
+            const isMensItem = previewBelt.name.includes('Chris-G') || previewBelt.name.includes('Camera');
             const stockEl = document.getElementById('previewStock');
             
-            if (isHighStock) {
+            if (isMensItem) {
                 stockEl.innerText = "In Stock";
                 stockEl.style.color = "var(--whatsapp)";
                 stockEl.style.borderColor = "rgba(37, 211, 102, 0.28)";
