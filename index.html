@@ -82,7 +82,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Ambient luxury background glow */
         .ambient-glow {
             position: fixed;
             top: -150px;
@@ -100,7 +99,6 @@
             z-index: 0;
         }
 
-        /* Top Promotional Broadcast Strip - BOLD UPGRADE */
         .promo-banner {
             background: linear-gradient(135deg, #d32f2f, #b71c1c);
             color: #ffffff;
@@ -125,7 +123,6 @@
             letter-spacing: 1px;
         }
 
-        /* Main Navigation Bar */
         header {
             position: sticky;
             top: 0;
@@ -149,6 +146,28 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-key-btn {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .admin-key-btn:hover {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: var(--gold);
         }
 
         .header-actions {
@@ -212,10 +231,112 @@
             box-shadow: 0 0 10px var(--accent-glow);
         }
 
+        /* AMAZING PEAK LANDING PAGE HERO */
+        .landing-hero {
+            max-width: 860px;
+            margin: 32px auto 20px;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .landing-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 18px;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        .landing-title {
+            font-size: 2.3rem;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #ffffff 20%, #b8b8c2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (min-width: 600px) {
+            .landing-title {
+                font-size: 3.2rem;
+            }
+        }
+
+        .landing-subtitle {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+
+        .landing-cta-row {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .btn-primary-gold {
+            background: linear-gradient(135deg, #d4af37, #aa820a);
+            color: #050505;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 8px 25px var(--gold-glow);
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary-glass {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            color: #ffffff;
+            padding: 14px 26px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary-glass:hover {
+            border-color: var(--border-hover);
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+        }
+
         /* Hero Slideshow Carousel */
         .hero-slider-container {
             max-width: 760px;
-            margin: 24px auto 12px;
+            margin: 0 auto 16px;
             padding: 0 20px;
             position: relative;
             z-index: 1;
@@ -224,7 +345,7 @@
         .slideshow {
             position: relative;
             width: 100%;
-            height: 240px;
+            height: 250px;
             border-radius: var(--radius-lg);
             overflow: hidden;
             border: 1px solid var(--border);
@@ -234,7 +355,7 @@
 
         @media (min-width: 600px) {
             .slideshow {
-                height: 340px;
+                height: 360px;
             }
         }
 
@@ -260,10 +381,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.90), transparent);
-            padding: 24px 20px 16px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92), transparent);
+            padding: 26px 20px 16px;
             color: #ffffff;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.4px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
@@ -272,7 +393,7 @@
         /* Trust & Guarantee Banner */
         .trust-banner {
             max-width: 760px;
-            margin: 16px auto;
+            margin: 20px auto;
             padding: 0 20px;
             position: relative;
             z-index: 1;
@@ -298,14 +419,14 @@
         }
 
         .trust-item span.highlight {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 800;
             color: var(--gold);
             letter-spacing: 0.3px;
         }
 
         .trust-item span.sub {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 0.6px;
@@ -317,37 +438,11 @@
             background: var(--border);
         }
 
-        /* Hero Headline & Introductory Statement */
-        .hero {
-            text-align: center;
-            padding: 20px 20px 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h2 {
-            font-size: 1.85rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-            background: linear-gradient(180deg, #ffffff 30%, #b0b0b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--muted);
-            font-size: 0.88rem;
-            max-width: 480px;
-            margin: 0 auto;
-            line-height: 1.55;
-        }
-
         /* Hot Deals & Special Gifting Banner */
         .hot-deals-banner {
             background: linear-gradient(135deg, rgba(229, 57, 53, 0.92) 0%, rgba(183, 28, 28, 0.95) 100%);
             border-radius: var(--radius-lg);
-            margin: 24px auto 14px;
+            margin: 28px auto 14px;
             max-width: 720px;
             padding: 22px 20px;
             text-align: center;
@@ -355,16 +450,6 @@
             position: relative;
             z-index: 1;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: softPulse 3.5s infinite alternate;
-        }
-
-        @keyframes softPulse {
-            0% {
-                box-shadow: 0 10px 30px rgba(229, 57, 53, 0.25);
-            }
-            100% {
-                box-shadow: 0 18px 45px rgba(229, 57, 53, 0.50);
-            }
         }
 
         .hot-deals-banner h2 {
@@ -652,7 +737,7 @@
             margin-bottom: 2px;
         }
 
-        /* Product Preview Modal Structure */
+        /* Product Preview Modal Structure with Interactive Slide Show */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -672,21 +757,16 @@
             border-radius: var(--radius-lg);
             width: 100%;
             max-width: 440px;
-            overflow: hidden;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
             animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85);
         }
 
         @keyframes modalPop {
-            0% {
-                transform: scale(0.92);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0.92); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .btn-close {
@@ -708,9 +788,7 @@
             transition: var(--transition-smooth);
         }
 
-        .btn-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        .btn-close:hover { background: rgba(255, 255, 255, 0.2); }
 
         .preview-img-box {
             width: 100%;
@@ -826,9 +904,7 @@
             transition: background 0.2s;
         }
 
-        .qty-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+        .qty-btn:hover { background: rgba(255, 255, 255, 0.1); }
 
         .qty-num {
             width: 34px;
@@ -865,9 +941,7 @@
             box-shadow: -20px 0 55px rgba(0, 0, 0, 0.85);
         }
 
-        .cart-drawer.open {
-            transform: translateX(0);
-        }
+        .cart-drawer.open { transform: translateX(0); }
 
         .cart-top {
             padding: 20px 24px;
@@ -923,9 +997,7 @@
             background: #000000;
         }
 
-        .cart-item-details {
-            flex-grow: 1;
-        }
+        .cart-item-details { flex-grow: 1; }
 
         .cart-item-name {
             font-size: 0.88rem;
@@ -962,9 +1034,7 @@
             transition: background 0.2s;
         }
 
-        .mini-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        .mini-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
         .cart-footer {
             border-top: 1px solid var(--border);
@@ -979,16 +1049,8 @@
             margin-bottom: 18px;
         }
 
-        .subtotal-row span {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .subtotal-row strong {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
+        .subtotal-row span { font-size: 0.9rem; color: var(--muted); }
+        .subtotal-row strong { font-size: 1.35rem; font-weight: 800; color: #ffffff; }
 
         .checkout-fields {
             display: flex;
@@ -1030,18 +1092,154 @@
             transition: opacity 0.2s, transform 0.1s;
         }
 
-        .btn-checkout:hover {
-            opacity: 0.94;
+        .btn-checkout:hover { opacity: 0.94; }
+        .btn-checkout:active { transform: scale(0.98); }
+        .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ADMIN CENTER MODAL & STYLING */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
         }
 
-        .btn-checkout:active {
-            transform: scale(0.98);
+        .admin-box {
+            background: #0c1017;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 620px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
         }
 
-        .btn-checkout:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .admin-box h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .admin-box p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .admin-form-group {
+            margin-bottom: 16px;
+        }
+
+        .admin-form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #b0b0b8;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-form-group input, .admin-form-group textarea, .admin-form-group select {
+            width: 100%;
+            background: #141822;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .admin-form-group input:focus, .admin-form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .admin-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-admin-action {
+            background: linear-gradient(135deg, var(--gold), #aa820a);
+            color: #000000;
+            font-weight: 800;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: var(--transition-smooth);
+            margin-top: 10px;
+        }
+
+        .btn-admin-action:hover { opacity: 0.9; }
+
+        .admin-product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #141822;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .admin-product-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-product-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .admin-product-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .admin-product-price {
+            font-size: 0.75rem;
+            color: var(--gold);
+        }
+
+        .admin-btn-edit {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .admin-btn-edit:hover { background: rgba(255, 255, 255, 0.2); }
     </style>
 </head>
 <body>
@@ -1057,7 +1255,10 @@
 
     <!-- Navigation Header -->
     <header>
-        <div class="brand-name">CHRIS-G SWISS</div>
+        <div class="brand-name">
+            CHRIS-G SWISS
+            <button class="admin-key-btn" onclick="promptAdminAccess()">🔑 Admin</button>
+        </div>
         <div class="header-actions">
             <div class="badge-delivery">
                 <span>●</span> Pay on Delivery • Accra
@@ -1067,6 +1268,21 @@
             </button>
         </div>
     </header>
+
+    <!-- AMAZING PEAK LANDING PAGE HERO -->
+    <section class="landing-hero">
+        <div class="landing-badge">
+            <span>✨</span> Accra's #1 Luxury Belt & Accessory Destination
+        </div>
+        <h1 class="landing-title">Elevate Your Presence With Uncompromised Swiss Craftsmanship</h1>
+        <p class="landing-subtitle">
+            Experience engineered automatic ratchet buckles, genuine 100% full-grain leather, and designer gift sets delivered directly to your doorstep in Accra with zero upfront payment.
+        </p>
+        <div class="landing-cta-row">
+            <a href="#mensContainer" class="btn-primary-gold">Shop Men's Collection ↓</a>
+            <a href="#womensContainer" class="btn-secondary-glass">Explore Women's Luxury Bags</a>
+        </div>
+    </section>
 
     <!-- Hero Slideshow Carousel Section -->
     <div class="hero-slider-container">
@@ -1106,12 +1322,6 @@
         </div>
     </div>
 
-    <!-- Hero Headline & Intro -->
-    <section class="hero">
-        <h2>Curated Swiss Belts & Luxury Gifts</h2>
-        <p>Engineered automatic ratchet buckles, authentic full-grain leather, and designer gift accessories. Select your items and pay upon arrival in Accra.</p>
-    </section>
-
     <!-- Hot Deals Banner -->
     <section class="hot-deals-banner">
         <h2>🔥 HOT DEALS: Gifts & Gadgets</h2>
@@ -1119,11 +1329,11 @@
     </section>
 
     <!-- MEN'S WEAR SECTION -->
-    <h3 class="section-title">Men's Wear & Gadgets</h3>
+    <h3 class="section-title" id="mensContainerTitle">Men's Wear & Gadgets</h3>
     <main class="grid" id="mensContainer"></main>
 
     <!-- WOMEN'S BAGS SECTION -->
-    <h3 class="section-title" style="margin-top: 10px;">Women's Luxury Bags</h3>
+    <h3 class="section-title" id="womensContainerTitle" style="margin-top: 10px;">Women's Luxury Bags</h3>
     <main class="grid" id="womensContainer" style="margin-bottom: 90px;"></main>
 
     <!-- Social Proof Notification Ticker -->
@@ -1145,7 +1355,7 @@
         </svg>
     </a>
 
-    <!-- Product Preview Details Modal -->
+    <!-- Product Preview Details Modal with Slideshow -->
     <div class="modal-overlay" id="previewModal">
         <div class="modal-box">
             <button class="btn-close" onclick="closePreview()" aria-label="Close modal">&times;</button>
@@ -1179,6 +1389,86 @@
 
                 <button class="btn-checkout" onclick="addPreviewItemToCart()">Add To Cart</button>
             </div>
+        </div>
+    </div>
+
+    <!-- SECURE ADMIN CENTER MODAL -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-box">
+            <button class="btn-close" onclick="closeAdminModal()" aria-label="Close admin">&times;</button>
+            <h2>🔑 Chris-G Admin Center</h2>
+            <p>Upload new products directly to Supabase or edit existing ones with multi-image slide show support.</p>
+            
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <button class="btn-admin-action" id="tabNewBtn" onclick="switchAdminTab('new')" style="margin-top:0;">+ Add New Product</button>
+                <button class="btn-admin-action" id="tabEditBtn" onclick="switchAdminTab('edit')" style="margin-top:0; background: #1b2230; color:#fff;">Edit Existing Products</button>
+            </div>
+
+            <!-- TAB 1: ADD NEW PRODUCT -->
+            <div id="adminNewSection">
+                <div class="admin-form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="newProdName" placeholder="e.g. Chris-G Executive Gold Belt">
+                </div>
+                <div class="admin-row">
+                    <div class="admin-form-group">
+                        <label>Sale Price (GH₵)</label>
+                        <input type="number" id="newProdSale" placeholder="149">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Original Price (GH₵)</label>
+                        <input type="number" id="newProdOrig" placeholder="200">
+                    </div>
+                </div>
+                <div class="admin-form-group">
+                    <label>Product Description / Details</label>
+                    <textarea id="newProdDesc" rows="3" placeholder="Engineered automatic ratchet buckle, 100% genuine Swiss leather..."></textarea>
+                </div>
+                <div class="admin-form-group">
+                    <label>Image URLs (Comma separated or one per line)</label>
+                    <textarea id="newProdImages" rows="2" placeholder="https://.../img1.jpg, https://.../img2.jpg"></textarea>
+                </div>
+                <div class="admin-form-group">
+                    <label>Or Upload Image Files to Supabase Storage</label>
+                    <input type="file" id="newProdFiles" multiple accept="image/*">
+                </div>
+                <button class="btn-admin-action" onclick="handleCreateProduct()">Publish Product to Site</button>
+            </div>
+
+            <!-- TAB 2: EDIT EXISTING PRODUCTS -->
+            <div id="adminEditSection" style="display:none;">
+                <div id="adminProductListContainer" style="max-height: 400px; overflow-y: auto;">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT SINGLE PRODUCT SUB-MODAL -->
+    <div class="admin-modal" id="editSingleModal">
+        <div class="admin-box">
+            <button class="btn-close" onclick="closeEditSingle()" aria-label="Close">&times;</button>
+            <h2>✏️ Edit Product</h2>
+            <input type="hidden" id="editProdId">
+            <div class="admin-form-group" style="margin-top:15px;">
+                <label>Product Name</label>
+                <input type="text" id="editProdName">
+            </div>
+            <div class="admin-row">
+                <div class="admin-form-group">
+                    <label>Sale Price (GH₵)</label>
+                    <input type="number" id="editProdSale">
+                </div>
+                <div class="admin-form-group">
+                    <label>Original Price (GH₵)</label>
+                    <input type="number" id="editProdOrig">
+                </div>
+            </div>
+            <div class="admin-form-group">
+                <label>Image URLs (JSON Array or Comma Separated for Slideshow)</label>
+                <textarea id="editProdImages" rows="3"></textarea>
+            </div>
+            <button class="btn-admin-action" onclick="handleSaveEditProduct()">Save Changes</button>
         </div>
     </div>
 
@@ -1220,10 +1510,220 @@
         let cart = [];
         let previewBelt = null;
         let previewQuantity = 1;
+        const MASTER_ADMIN_KEY = 'CHRISG-ADMIN-2026';
+
+        // Master Admin Access Prompt
+        function promptAdminAccess() {
+            const entered = prompt("Enter Master Admin Key to access the dashboard:");
+            if (entered === MASTER_ADMIN_KEY) {
+                openAdminModal();
+            } else if (entered !== null) {
+                alert("Incorrect Master Key!");
+            }
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'flex';
+            renderAdminProductList();
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function switchAdminTab(tab) {
+            const newSec = document.getElementById('adminNewSection');
+            const editSec = document.getElementById('adminEditSection');
+            const newBtn = document.getElementById('tabNewBtn');
+            const editBtn = document.getElementById('tabEditBtn');
+
+            if (tab === 'new') {
+                newSec.style.display = 'block';
+                editSec.style.display = 'none';
+                newBtn.style.background = 'linear-gradient(135deg, var(--gold), #aa820a)';
+                newBtn.style.color = '#000';
+                editBtn.style.background = '#1b2230';
+                editBtn.style.color = '#fff';
+            } else {
+                newSec.style.display = 'none';
+                editSec.style.display = 'block';
+                editBtn.style.background = 'linear-gradient(135deg, var(--gold), #aa820a)';
+                editBtn.style.color = '#000';
+                newBtn.style.background = '#1b2230';
+                newBtn.style.color = '#fff';
+                renderAdminProductList();
+            }
+        }
+
+        // Render Product List in Admin Edit Tab
+        function renderAdminProductList() {
+            const container = document.getElementById('adminProductListContainer');
+            container.innerHTML = '';
+            if (beltCatalog.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">No products loaded yet.</p>`;
+                return;
+            }
+
+            beltCatalog.forEach(prod => {
+                let mainImg = prod.image_url;
+                if (prod.images) {
+                    try {
+                        const parsed = typeof prod.images === 'string' ? JSON.parse(prod.images) : prod.images;
+                        if (Array.isArray(parsed) && parsed.length > 0) mainImg = parsed[0];
+                    } catch (e) {}
+                }
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'admin-product-item';
+                itemDiv.innerHTML = `
+                    <div class="admin-product-info">
+                        <img src="${mainImg || 'https://placehold.co/100'}" alt="">
+                        <div>
+                            <div class="admin-product-name">${prod.name}</div>
+                            <div class="admin-product-price">GH₵${prod.sale_price}</div>
+                        </div>
+                    </div>
+                    <button class="admin-btn-edit" onclick="openEditSingleModal('${prod.id}')">Edit Photos & Details</button>
+                `;
+                container.appendChild(itemDiv);
+            });
+        }
+
+        function openEditSingleModal(id) {
+            const prod = beltCatalog.find(b => b.id == id);
+            if (!prod) return;
+
+            document.getElementById('editProdId').value = prod.id;
+            document.getElementById('editProdName').value = prod.name;
+            document.getElementById('editProdSale').value = prod.sale_price;
+            document.getElementById('editProdOrig').value = prod.original_price;
+
+            let imgStr = prod.images || prod.image_url || '';
+            if (typeof imgStr === 'object') {
+                imgStr = JSON.stringify(imgStr, null, 2);
+            }
+            document.getElementById('editProdImages').value = imgStr;
+            document.getElementById('editSingleModal').style.display = 'flex';
+        }
+
+        function closeEditSingle() {
+            document.getElementById('editSingleModal').style.display = 'none';
+        }
+
+        async function handleSaveEditProduct() {
+            const id = document.getElementById('editProdId').value;
+            const name = document.getElementById('editProdName').value.trim();
+            const sale_price = parseFloat(document.getElementById('editProdSale').value);
+            const original_price = parseFloat(document.getElementById('editProdOrig').value);
+            const rawImages = document.getElementById('editProdImages').value.trim();
+
+            let imagesVal = rawImages;
+            let firstImg = rawImages;
+            try {
+                if (rawImages.startsWith('[')) {
+                    const parsed = JSON.parse(rawImages);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        firstImg = parsed[0];
+                    }
+                } else if (rawImages.includes(',')) {
+                    const arr = rawImages.split(',').map(s => s.trim()).filter(Boolean);
+                    imagesVal = JSON.stringify(arr);
+                    firstImg = arr[0];
+                }
+            } catch (e) {}
+
+            const { error } = await supabaseClient.from('belts').update({
+                name,
+                sale_price,
+                original_price,
+                image_url: firstImg,
+                images: imagesVal
+            }).eq('id', id);
+
+            if (error) {
+                alert("Error updating product: " + error.message);
+                return;
+            }
+
+            alert("✅ Product updated successfully!");
+            closeEditSingle();
+            closeAdminModal();
+            fetchBelts();
+        }
+
+        async function handleCreateProduct() {
+            const name = document.getElementById('newProdName').value.trim();
+            const sale_price = parseFloat(document.getElementById('newProdSale').value);
+            const original_price = parseFloat(document.getElementById('newProdOrig').value);
+            const desc = document.getElementById('newProdDesc').value.trim();
+            const rawImages = document.getElementById('newProdImages').value.trim();
+            const fileInput = document.getElementById('newProdFiles');
+
+            if (!name || isNaN(sale_price)) {
+                alert("Please enter at least a product name and sale price.");
+                return;
+            }
+
+            let imageUrls = [];
+            if (rawImages) {
+                if (rawImages.includes(',')) {
+                    imageUrls = rawImages.split(',').map(s => s.trim()).filter(Boolean);
+                } else {
+                    imageUrls = [rawImages];
+                }
+            }
+
+            // Handle file uploads to Supabase storage if selected
+            if (fileInput.files && fileInput.files.length > 0) {
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    const file = fileInput.files[i];
+                    const fileName = `product_${Date.now()}_${i}_${file.name}`;
+                    const { data: uploadData, error: uploadErr } = await supabaseClient.storage
+                        .from('product-images') // Assumes bucket name or public bucket
+                        .upload(fileName, file);
+                    
+                    if (!uploadErr && uploadData) {
+                        const { data: pubData } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+                        if (pubData && pubData.publicUrl) {
+                            imageUrls.push(pubData.publicUrl);
+                        }
+                    }
+                }
+            }
+
+            if (imageUrls.length === 0) {
+                imageUrls = ['https://placehold.co/400x400/181818/888?text=Chris-G+Swiss'];
+            }
+
+            const firstImg = imageUrls[0];
+            const imagesJson = JSON.stringify(imageUrls);
+
+            const { error } = await supabaseClient.from('belts').insert([{
+                name,
+                sale_price,
+                original_price: isNaN(original_price) ? sale_price * 1.3 : original_price,
+                image_url: firstImg,
+                images: imagesJson
+            }]);
+
+            if (error) {
+                alert("Error adding product: " + error.message);
+                return;
+            }
+
+            alert("🎉 New product published successfully!");
+            document.getElementById('newProdName').value = '';
+            document.getElementById('newProdSale').value = '';
+            document.getElementById('newProdOrig').value = '';
+            document.getElementById('newProdDesc').value = '';
+            document.getElementById('newProdImages').value = '';
+            fileInput.value = '';
+            closeAdminModal();
+            fetchBelts();
+        }
 
         // Comprehensive Catalog Descriptions
         const beltDescriptions = {
-            // Belts
             "Chris-G Classic White": "Crafted from full-grain Swiss leather featuring an automatic brushed silver ratchet buckle. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Smooth Brown": "Warm chestnut brown leather featuring a sleek scratch-resistant sliding track. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
             "Chris-G Smooth Black": "The definitive boardroom classic. Pure obsidian black leather equipped with a micro-adjustable ratchet mechanism. Backed by our 5-Year Guarantee. Includes free luxury keyholder and packaging.",
@@ -1236,7 +1736,6 @@
             "Chris-G Smooth Faint Blue": "The ultimate minimalist essential. Smooth, premium faint blue leather paired with a sleek silver-tone buckle for a unique, timeless look. Backed by our 5-Year Guarantee.",
             "Chris-G Carbon Texture Black": "Modern and sophisticated. Premium black leather with a distinct carbon-fiber inspired texture and a brushed buckle. Backed by our 5-Year Guarantee.",
             
-            // Bags and Lifestyle Gadgets
             "A9 HD Mini Wireless Camera": "Discreet 1080p HD Wireless Security Camera. Features live smartphone viewing (iOS/Android), automatic night vision, motion detection alerts, and dual TF card/Cloud storage. Includes rechargeable internal battery, 360° magnetic mount, and USB charging cable. Perfect for home, shops, offices, and vehicles.",
             "Luxury Black 'C' Crossbody": "Elegant black crossbody clutch featuring a premium gold-tone 'C' buckle closure. A perfect luxury gift for friends or loved ones.",
             "Pegasus Tote & Pouch Set": "Stylish black tote bag with a striking Pegasus unicorn pattern. Includes a matching wristlet pouch for ultimate everyday convenience.",
@@ -1272,7 +1771,7 @@
         function startOrderTicker() {
             setTimeout(() => {
                 triggerTickerPopup();
-                setInterval(triggerTickerPopup, 180000); // Triggers every 3 minutes
+                setInterval(triggerTickerPopup, 180000);
             }, 15000);
         }
 
@@ -1296,13 +1795,13 @@
                 console.error("Supabase Query Error:", error);
                 return;
             }
-            beltCatalog = data;
+            beltCatalog = data || [];
             renderBelts();
             startOrderTicker();
             initSlideshow();
         }
 
-        // Render Dynamic Product Grids (Separated Categories)
+        // Render Dynamic Product Grids with Slideshow preview
         function renderBelts() {
             const mensContainer = document.getElementById('mensContainer');
             const womensContainer = document.getElementById('womensContainer');
@@ -1311,17 +1810,15 @@
             womensContainer.innerHTML = '';
 
             beltCatalog.forEach(belt => {
-                const discount = Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100);
+                const discount = belt.original_price > belt.sale_price ? Math.round(((belt.original_price - belt.sale_price) / belt.original_price) * 100) : 0;
                 const discountBadge = discount > 0 ? `<div class="discount-pill">-${discount}% OFF</div>` : '';
                 
-                // CATEGORY & STOCK LOGIC
-                const isMensItem = belt.name.includes('Chris-G') || belt.name.includes('Camera');
+                const isMensItem = belt.name.toLowerCase().includes('chris-g') || belt.name.toLowerCase().includes('camera') || belt.name.toLowerCase().includes('belt');
                 let stockPillHTML = '';
                 
                 if (isMensItem) {
                     stockPillHTML = `<div class="stock-pill"><span class="dot" style="background: var(--whatsapp); box-shadow: 0 0 8px var(--whatsapp);"></span> In Stock</div>`;
                 } else {
-                    // Only 1 Left Badge for Bags
                     stockPillHTML = `<div class="stock-pill" style="color: #ff4d4d; border-color: rgba(255, 77, 77, 0.3);"><span class="dot" style="background: #ff4d4d; box-shadow: 0 0 8px #ff4d4d;"></span> Only 1 Left!</div>`;
                 }
                 
@@ -1338,7 +1835,7 @@
                 card.className = 'card';
                 card.innerHTML = `
                     ${discountBadge}
-                    <div class="img-wrap">
+                    <div class="img-wrap" onclick="openPreview('${belt.id}')" style="cursor:pointer;">
                         <img src="${mainImg}" alt="${belt.name}" loading="lazy">
                         ${stockPillHTML}
                     </div>
@@ -1347,17 +1844,16 @@
                             <div class="card-title">${belt.name}</div>
                             <div class="price-line">
                                 <span class="price-now">GH₵${belt.sale_price}</span>
-                                <span class="price-was">GH₵${belt.original_price}</span>
+                                ${belt.original_price ? `<span class="price-was">GH₵${belt.original_price}</span>` : ''}
                             </div>
                         </div>
                         <div class="card-actions">
-                            <button class="btn-view" onclick="openPreview('${belt.id}')">Details</button>
+                            <button class="btn-view" onclick="openPreview('${belt.id}')">Gallery</button>
                             <button class="btn-add" onclick="quickAddToCart('${belt.id}')">+ Cart</button>
                         </div>
                     </div>
                 `;
                 
-                // Append to correct category container
                 if (isMensItem) {
                     mensContainer.appendChild(card);
                 } else {
@@ -1366,19 +1862,18 @@
             });
         }
 
-        // Modal Preview Controls
+        // Modal Preview Controls with Slide Show Thumbnails
         function openPreview(beltId) {
-            previewBelt = beltCatalog.find(b => b.id === beltId);
+            previewBelt = beltCatalog.find(b => b.id == beltId);
             if (!previewBelt) return;
 
             previewQuantity = 1;
             document.getElementById('previewQtyNum').innerText = previewQuantity;
             document.getElementById('previewTitle').innerText = previewBelt.name;
             document.getElementById('previewPrice').innerText = `GH₵${previewBelt.sale_price}`;
-            document.getElementById('previewOrigPrice').innerText = `GH₵${previewBelt.original_price}`;
+            document.getElementById('previewOrigPrice').innerText = previewBelt.original_price ? `GH₵${previewBelt.original_price}` : '';
             
-            // Modal Dynamic Stock text
-            const isMensItem = previewBelt.name.includes('Chris-G') || previewBelt.name.includes('Camera');
+            const isMensItem = previewBelt.name.toLowerCase().includes('chris-g') || previewBelt.name.toLowerCase().includes('camera');
             const stockEl = document.getElementById('previewStock');
             
             if (isMensItem) {
@@ -1415,7 +1910,7 @@
             const thumbsContainer = document.getElementById('galleryThumbsContainer');
             thumbsContainer.innerHTML = '';
             
-            if (imageList.length > 1) {
+            if (imageList.length > 0) {
                 thumbsContainer.style.display = 'flex';
                 imageList.forEach((url, idx) => {
                     const thumb = document.createElement('img');
@@ -1458,7 +1953,7 @@
 
         // Cart Architecture
         function addToCart(beltId, qty) {
-            const belt = beltCatalog.find(b => b.id === beltId);
+            const belt = beltCatalog.find(b => b.id == beltId);
             if (!belt) return;
 
             let mainImg = belt.image_url;
@@ -1469,7 +1964,7 @@
                 } catch (e) {}
             }
 
-            const existingIndex = cart.findIndex(item => item.id === beltId);
+            const existingIndex = cart.findIndex(item => item.id == beltId);
 
             if (existingIndex > -1) {
                 cart[existingIndex].quantity += qty;
@@ -1486,12 +1981,12 @@
         }
 
         function modifyCartQty(beltId, delta) {
-            const item = cart.find(i => i.id === beltId);
+            const item = cart.find(i => i.id == beltId);
             if (!item) return;
 
             item.quantity += delta;
             if (item.quantity <= 0) {
-                cart = cart.filter(i => i.id !== beltId);
+                cart = cart.filter(i => i.id != beltId);
             }
             updateCartDisplay();
         }
@@ -1596,7 +2091,6 @@
             const formattedPayload = `${itemsSummary} | Total: GH₵${totalGhc}`;
 
             try {
-                // Correctly typed Make.com webhook headers
                 await fetch('https://hook.eu1.make.com/uehjef8tcnwlvg3957zbe6yg4y7qk9gk', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1611,7 +2105,11 @@
                 console.log("Webhook dispatch logged:", err);
             }
 
-            alert(`🎉 Order Confirmed!\n\nThank you, ${name}. Your items are confirmed!\n\nWe will call ${phone} shortly to coordinate your fast delivery in Accra!`);
+            alert(`🎉 Order Confirmed!
+
+Thank you, ${name}. Your items are confirmed!
+
+We will call ${phone} shortly to coordinate your fast delivery in Accra!`);
             
             cart = [];
             updateCartDisplay();
