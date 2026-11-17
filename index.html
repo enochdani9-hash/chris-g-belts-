@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1448,7 +1448,7 @@
     <div class="admin-modal" id="editSingleModal">
         <div class="admin-box">
             <button class="btn-close" onclick="closeEditSingle()" aria-label="Close">&times;</button>
-            <h2>✏️ Edit Product</h2>
+            <h2>✏️ Edit Product & Manage Images</h2>
             <input type="hidden" id="editProdId">
             <div class="admin-form-group" style="margin-top:15px;">
                 <label>Product Name</label>
@@ -1465,8 +1465,16 @@
                 </div>
             </div>
             <div class="admin-form-group">
-                <label>Image URLs (JSON Array or Comma Separated for Slideshow)</label>
-                <textarea id="editProdImages" rows="3"></textarea>
+                <label>Existing Images (Click ❌ to Delete)</label>
+                <div id="editImagesGalleryGrid" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px; background:#141822; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);"></div>
+            </div>
+            <div class="admin-form-group">
+                <label>Upload New Images to Add</label>
+                <input type="file" id="editProdFiles" multiple accept="image/*">
+            </div>
+            <div class="admin-form-group">
+                <label>Or Add Image URLs (Comma separated)</label>
+                <input type="text" id="editProdAddUrls" placeholder="https://.../img.jpg">
             </div>
             <button class="btn-admin-action" onclick="handleSaveEditProduct()">Save Changes</button>
         </div>
@@ -1589,6 +1597,8 @@
             });
         }
 
+        let currentEditingImages = [];
+
         function openEditSingleModal(id) {
             const prod = beltCatalog.find(b => b.id == id);
             if (!prod) return;
@@ -1597,13 +1607,54 @@
             document.getElementById('editProdName').value = prod.name;
             document.getElementById('editProdSale').value = prod.sale_price;
             document.getElementById('editProdOrig').value = prod.original_price;
+            document.getElementById('editProdAddUrls').value = '';
+            document.getElementById('editProdFiles').value = '';
 
-            let imgStr = prod.images || prod.image_url || '';
-            if (typeof imgStr === 'object') {
-                imgStr = JSON.stringify(imgStr, null, 2);
+            // Extract images array
+            currentEditingImages = [];
+            if (prod.images) {
+                try {
+                    const parsed = typeof prod.images === 'string' ? JSON.parse(prod.images) : prod.images;
+                    if (Array.isArray(parsed)) currentEditingImages = parsed;
+                } catch (e) {
+                    if (typeof prod.images === 'string') currentEditingImages = [prod.images];
+                }
             }
-            document.getElementById('editProdImages').value = imgStr;
+            if (currentEditingImages.length === 0 && prod.image_url) {
+                currentEditingImages = [prod.image_url];
+            }
+
+            renderEditImagesGrid();
             document.getElementById('editSingleModal').style.display = 'flex';
+        }
+
+        function renderEditImagesGrid() {
+            const grid = document.getElementById('editImagesGalleryGrid');
+            grid.innerHTML = '';
+            if (currentEditingImages.length === 0) {
+                grid.innerHTML = `<span style="color:#888; font-size:0.8rem;">No images currently attached.</span>`;
+                return;
+            }
+
+            currentEditingImages.forEach((url, idx) => {
+                const box = document.createElement('div');
+                box.style.position = 'relative';
+                box.style.width = '60px';
+                box.style.height = '60px';
+                box.style.borderRadius = '8px';
+                box.style.overflow = 'hidden';
+                box.style.border = '1px solid rgba(255,255,255,0.2)';
+                box.innerHTML = `
+                    <img src="${url}" style="width:100%; height:100%; object-fit:cover;">
+                    <button type="button" onclick="removeEditingImage(${idx})" style="position:absolute; top:2px; right:2px; background:rgba(229,57,53,0.9); color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold;">×</button>
+                `;
+                grid.appendChild(box);
+            });
+        }
+
+        function removeEditingImage(index) {
+            currentEditingImages.splice(index, 1);
+            renderEditImagesGrid();
         }
 
         function closeEditSingle() {
@@ -1615,29 +1666,49 @@
             const name = document.getElementById('editProdName').value.trim();
             const sale_price = parseFloat(document.getElementById('editProdSale').value);
             const original_price = parseFloat(document.getElementById('editProdOrig').value);
-            const rawImages = document.getElementById('editProdImages').value.trim();
+            const addUrlsInput = document.getElementById('editProdAddUrls').value.trim();
+            const fileInput = document.getElementById('editProdFiles');
 
-            let imagesVal = rawImages;
-            let firstImg = rawImages;
-            try {
-                if (rawImages.startsWith('[')) {
-                    const parsed = JSON.parse(rawImages);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
-                        firstImg = parsed[0];
+            // Add comma separated URLs if any
+            if (addUrlsInput) {
+                const parts = addUrlsInput.split(',').map(s => s.trim()).filter(Boolean);
+                parts.forEach(p => currentEditingImages.push(p));
+            }
+
+            // Upload new files if any
+            if (fileInput.files && fileInput.files.length > 0) {
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    const file = fileInput.files[i];
+                    const fileName = `product_${Date.now()}_${i}_${file.name}`;
+                    const { data: uploadData, error: uploadErr } = await supabaseClient.storage
+                        .from('product-images')
+                        .upload(fileName, file);
+                    
+                    if (!uploadErr && uploadData) {
+                        const { data: pubData } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+                        if (pubData && pubData.publicUrl) {
+                            currentEditingImages.push(pubData.publicUrl);
+                        }
+                    } else {
+                        // Fallback or warning if storage bucket needs creation/public setup, let's also support data url base64 if storage fails
+                        console.warn("Storage upload note:", uploadErr);
                     }
-                } else if (rawImages.includes(',')) {
-                    const arr = rawImages.split(',').map(s => s.trim()).filter(Boolean);
-                    imagesVal = JSON.stringify(arr);
-                    firstImg = arr[0];
                 }
-            } catch (e) {}
+            }
+
+            if (currentEditingImages.length === 0) {
+                currentEditingImages = ['https://placehold.co/400x400/181818/888?text=Product'];
+            }
+
+            const firstImg = currentEditingImages[0];
+            const imagesJson = JSON.stringify(currentEditingImages);
 
             const { error } = await supabaseClient.from('belts').update({
                 name,
                 sale_price,
                 original_price,
                 image_url: firstImg,
-                images: imagesVal
+                images: imagesJson
             }).eq('id', id);
 
             if (error) {
